@@ -2,12 +2,17 @@
 
 \usepackage{verbatim}
 \usepackage{graphicx}
+\usepackage{biblatex}
 
 % Package that should go in to the style file
 \usepackage{emptypage}          % Suppress page numbers on empty pages
 \usepackage[margin=1in]{geometry}
 
 \usepackage[double spacing]{set space}          % Leaves space between lines for manual edits
+
+
+% Define the bib resource file which contains the citation definitions
+\addbibresource{thesis.bib}
 
 
 \title{An analysis of Modified Newtonian Dynamics as a candidate for solving the "Missing Mass Problem"}
@@ -22,5 +27,8 @@
 
     \include{chap1}
     \include{chap2}
+
+    \addcontentsline{toc}{chapter}{References}      % Add references to ToC
+    \printbibliography
 
 \end{document}

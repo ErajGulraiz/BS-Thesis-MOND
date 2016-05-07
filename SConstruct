@@ -36,6 +36,9 @@ env.AppendUnique(PDFLATEXFLAGS='-halt-on-error')    # Halts compilation on the f
 # The env.PDF declares that report.pdf is to created from (depends upon) report.tex and is build using pdflatex
 pdf = env.PDF(target=PDFFILE, source=TEXFILE)
 
+# Declare additional files to be cleaned when 'scons -c' is run
+env.Clean(pdf, ['thesis.run.xml'])
+
 
 # We create an instance of the Show builder and make it the primary dependency of this project. The rest are connected to it through the builders defined above
 show = env.Show(PDFFILE)

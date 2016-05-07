@@ -10,3 +10,7 @@
 *.synctex
 *.toc
 *.lof
+*.bbl
+*.bcf
+*.blg
+*.run.xml
