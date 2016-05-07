@@ -1,13 +1,26 @@
 \documentclass{book}
+
 \usepackage{verbatim}
 \usepackage{graphicx}
+
+% Package that should go in to the style file
+\usepackage{emptypage}          % Suppress page numbers on empty pages
 \usepackage[margin=1in]{geometry}
 
 \usepackage[double spacing]{set space}          % Leaves space between lines for manual edits
 
+
+\title{An analysis of Modified Newtonian Dynamics as a candidate for solving the "Missing Mass Problem"}
+\author{Eraj Gulraiz}
+
+
 \begin{document}
 
-\include{chap1}
-\include{chap2}
+    \maketitle
+    \tableofcontents
+    \listoffigures
+
+    \include{chap1}
+    \include{chap2}
 
 \end{document}
