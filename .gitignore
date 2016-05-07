@@ -5,3 +5,6 @@
 *.tex.bak
 *.kra
 *~
+.sconsign.dblite
+*.fls
+*.synctex
