@@ -1,82 +1,94 @@
-\documentclass{article}
+\documentclass{book}
 \usepackage{verbatim}
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
-\usepackage[double spacing]{set space}
+
+\usepackage[double spacing]{set space}          % Leaves space between lines for manual edits
+
 \begin{document}
-\section{Chapter 1}
-\subsection{Introduction}
+
+\chapter{Introduction}
+
 Astronomy is the oldest of the natural sciences, the study of the celestial objects,their positions, and characteristics. Astrophysics is the application ofthe Laws of Physics to understand Astronomy. In early times Astronomy only comprised of the observations of the motion of visible celestial objects, but with the passage of time, questions about the nature of the universe started to originate. Early studies only considered the Solar system but with the discovery of telescope scientists realized that there is more to the universe than just that. Now, in the era of modern Astronomy, scientists have found many astounding phenomenon happening in outer space. [1]
-The following research includes a study of the motion of a spiral galaxy namely Andromeda. The analysis of the motion will be done by studying the rotation curve of the specified galaxy. I will develop a set of calculations including computational work, that will prove us that the solution of the Missing Mass Problem can be found without invoking Dark Matter. 
+The following research includes a study of the motion of a spiral galaxy namely Andromeda. The analysis of the motion will be done by studying the rotation curve of the specified galaxy. I will develop a set of calculations including computational work, that will prove us that the solution of the Missing Mass Problem can be found without invoking Dark Matter.
 The first chapter of this thesis introduces the basic concepts that are the basis of the following research.
-((written with progress)) 
-\subsection{Literature View}
-\subsubsection{Evolution of the Universe}
+((written with progress))
+
+\section{Literature View}
+
+\subsection{Evolution of the Universe}
  The origin and evolution of the Universe is proposed by the widely accepted Big Bang Theory, according to which the universe was created as a consequence of giant explosion of very dense and hot matter. After the explosion it started to expand and cool down, this cooling down resulted in the formation of elements and then in the formation of planets, stars, galaxies and various celestial objects. [2]
- 
-\subsubsection{Missing Mass Problem}
+
+\subsection{Missing Mass Problem}
 When the scientists studied the motion of the objects in the Solar system they fell right into the realms of Newtonian laws of kinematics. There was no question in these Laws until the scientists studied the large scale structures such as galaxies or cluster of galaxies. This was first observed by Jan Hendrick Oort in 1932, when he noticed that stars in the solar neighborhood moved faster than expected. In 1939, Horace Babcock measured the rotation curve to Andromeda Galaxy which resulted in the increasing mass to luminosity ratio. [3] Similarly, in 1959 Louise Volders demonstrated that the spiral galaxy M33 does not spin according to the Keplerian Dynamics. [4] The Rotation Curves give us the information of change in velocity as we move away from the center of a system. There were two conclusions drawn from such errors, that either our understanding of the Gravity is not quite right, in the case when we study large scale structures or there is some hidden matter that is providing enough force to these structures to move with certain accelerations.
 
-\subsubsection{Dark Matter vs. MOND}
+\subsection{Dark Matter vs. MOND}
 [7]   In 1933 Fritz Zwicky invoke the dark matter as a solution to this mass discrepancy problem by studying eight Coma galaxies. He calculated mass to light ratios of these galaxy and concluded that 90 percent of the mass that had been responsible for the observed ratio, was missing. The other method to find about missing mass was to study the rotational velocities of galaxies. And it was assumed that the stars in the galaxies will follow the Kepler's law like the planets in the solar system, i.e. their velocities will show a decline as moving through the radius. So it was assumed that there is some invisible matter affecting their motion. That matter was named as Dark Matter.
 [8][5][6] The mass discrepancy observed in the stellar systems only happens when the acceleration of gravity falls below a fix value i.e.
 $a_{0}= 1.2x10^-8 cm/s^2$.[9] In 1983, Mordehai Milgrom proposed a modification in the Newtons Dynamics that explains many properties of galaxies without  the need of non baryonic dark matter. It is also effective in describing the dynamics of galaxies and galaxy clusters and within some approximations, gravitational lensing. [10][11] MOND and Dark Matter give conceptually different but operationally equivalent description of cosmic phenomenon.
 
-\subsection{Aims and objective} 
+\section{Aims and objective}
 
-\subsection{Work Plan}
- This research is based on the work of Milgrom for solving the Missing Mass Problem. It focuses on calculation of Milgrom's constant to create an expected rotation curve without the mass descrepancy. 
+\section{Work Plan}
+ This research is based on the work of Milgrom for solving the Missing Mass Problem. It focuses on calculation of Milgrom's constant to create an expected rotation curve without the mass descrepancy.
 (still to work)
 
-\section{Chapter 2}
-\subsection{Modified Newtonian Dynamics (MOND) [6]}
-MOND is an algorithm that allows us the calculations of distribution of the effective gravitational force in astronomical objects from the distribution of baryonic matter with one additional fundamental parameter that has the dimensions od acceleration. This  is done by the determination of rotation curves of disk galaxies, and relating it with normal keplerian motion of the galaxies. 
+\chapter{Modified Newtonian Dynamics (MOND) [6]}
+
+MOND is an algorithm that allows us the calculations of distribution of the effective gravitational force in astronomical objects from the distribution of baryonic matter with one additional fundamental parameter that has the dimensions od acceleration. This  is done by the determination of rotation curves of disk galaxies, and relating it with normal keplerian motion of the galaxies.
 
  It is a numeric way of calculating the missing mass or the factor that is causing a descrepancy in mass. It relates MOND acceleration 'a' to Newtonian acceleration $a_{N}$ by the following formula \begin{equation}
  a_{N}= a\mu(\frac{a}{a_{N}})
 \end{equation}
-where $a_{N} = 1.2×10-8  cms-2$  is a constant of physics. 
-The interpolation function $\mu (a/a0)$ shows asymptotic behaviour $\mu=1$ when $a>> a0$,  which retrieves the Newtonian expression in strong field regime. And for $a << a0$ with these assumptions gives us the following expression, 
+where $a_{N} = 1.2×10-8  cms-2$  is a constant of physics.
+The interpolation function $\mu (a/a0)$ shows asymptotic behaviour $\mu=1$ when $a>> a0$,  which retrieves the Newtonian expression in strong field regime. And for $a << a0$ with these assumptions gives us the following expression,
 \begin{equation}
 a= \sqrt{a_{N}a_{0}}= \frac{\sqrt{GMa_{0}}}{r}
-\end{equation} 
+\end{equation}
 different functions are used for $\mu$, currently most used function is :
 \begin{equation}
 (\frac{a}{a_{0}}) = \frac{\frac{a}{a_{0}}}{\sqrt{1+(\frac{a}{a_{0}})^2}•}
-\end{equation} 
-it works well for galactic rotation and solving for a, it gives 
+\end{equation}
+it works well for galactic rotation and solving for a, it gives
 \begin{equation}
 a= a_{N}(\frac{1}{2}+\frac{1}{2\sqrt{1+(\frac{2a_{0}}{a_{N}})^2}})^\frac{1}{2}
 \end{equation}
 the above expression allows us to calculate the MOND acceleration provided Newtonian gravity is known.
-\subsection{Area of Study}
+
+\section{Area of Study}
   MOND has been tested successfully on spiral galaxies, so for this research we choose our nearest spiral galaxy i.e. Andromeda Galaxy.(work it out)
-  \subsubsection{Andromeda Galaxy}
+
+\subsection{Andromeda Galaxy}
   Andromeda, M31 or NGC 224 is the nearest spiral galaxy to Milky Way.  (still to work)
-\subsubsection{Distance to the Galaxy}
-The stars and galaxies are far apart from Earth, these distances can vary from a few parsecs to kilo and mega parsecs. It is important to calculate the distances in order to determine further properties of these objects. There are different techniques to calculate distances, that astronomers have developed. 
+
+\subsection{Distance to the Galaxy}
+
+The stars and galaxies are far apart from Earth, these distances can vary from a few parsecs to kilo and mega parsecs. It is important to calculate the distances in order to determine further properties of these objects. There are different techniques to calculate distances, that astronomers have developed.
 A few of them are listed below:
-\subsubsection{Standard Candles[12]}
+
+\subsection{Standard Candles[12]}
  Cepheid variable stars are used to as cosmic distance ladders to measure distances. Cepheid variable stars are a part of star cycle, formed when a giant red star is about to die. These stars expand and contract, changing their brightness from lighter to dimmer.  They change their brightness in regular intervals of 1 to 70 days. And the relation between the time interval and apparent magnitude gives us distances by the following equation:
  \begin{equation}
  d= 10^{\frac{(m-M+5)}{5}}
  \end{equation}
 where \textbf{m} is the apparent magnitude and \textbf{M} is the absolute magnitude.
-\subsubsection*{Binary Stars [13]}
+
+\subsection*{Binary Stars [13]}
+
 Binary stars system is the one which have two stars orbiting around a center of mass, hence they are gravitationally bound to each other. Almost \textbf{85} percent of the stars are binary in nature. Gravity hold the system together, both stars orbit their centre of mass (CM). The orbital periods and distances of these system vary enormously.If the stars are the same masses, they are equally distant from CM, otherwise more massive star is closer to the CM. Binary stars are difficult to observe directly, because systems are too distant to resolve each star. Astronomers use their light curve ; how apparent brightness changes with time, to calculate the distances. Binary stars are classified to following categories.
 
 \begin{enumerate}
 
 \item\textbf{Visual Binaries}
 
-Some binary systems are close to Earth and have a significantly large distances between each    other, so they can be visualized individually in a telescope. These systems are known as visual binaries. 
-  
+Some binary systems are close to Earth and have a significantly large distances between each    other, so they can be visualized individually in a telescope. These systems are known as visual binaries.
+
 \item {Spectroscopic Binaries }
 
 Most binary systems are too far to be resolved by telescopes, so they are detected by the Doppler Shifts in their spectral lines. Such systems are spectroscopic binary system. The two stars appear to be moving towards and away from us. So the one moving towards us is blue shifted while the one moving away is red shifted.
 
 
-\item\textbf{ Astrometric Binaries}
+\item\textbf{Astrometric Binaries}
 
 The Binary stars sometimes are too far or two close. Sometimes it is hard to distinguish between the two stars in the system, such systems of binary stars are known as Astrometric binary stars.
 [http://csep10.phys.utk.edu/astr162/lect/binaries/astrometric.html]
@@ -84,8 +96,8 @@ The Binary stars sometimes are too far or two close. Sometimes it is hard to dis
 \item \textbf{Eclipsing Binaries}
 [http://www.physics.sfasu.edu/astro/ebstar/ebstar.html]
 
-The type of variable stars, that appear as single point of light , but due to brightness variation and spectroscopic observations we say they are two stars in close orbit around each other and seem like they eclipse eachother. 
- 
+The type of variable stars, that appear as single point of light , but due to brightness variation and spectroscopic observations we say they are two stars in close orbit around each other and seem like they eclipse eachother.
+
 [http://www.physics.sfasu.edu/astro/ebstar/ebstar.html]
 
 These binary systems give the best estimates of distances. this system of binary stars have two luminous stars. The graph of brightness versus time is known as Light curve of eclipsing binaries. Time is expressed as phase, and the unit of phase is orbital period. The brightness is measured as magnitude of the stars.
@@ -96,7 +108,9 @@ These binary systems give the best estimates of distances. this system of binary
 \end{figure}
 
 \end{enumerate}
-\subsection*{Explanation of Light Curve}
+
+\section*{Explanation of Light Curve}
+
 The light curve is plotted as a consequence of the following movements of the stars in binary system.
 
 \begin{itemize}
@@ -105,37 +119,38 @@ If the stars are separated, we get lighy from both stars. Total amount of light 
 do it at home .. create figures and add phases of light curve. pages 5,6
 
 \end{itemize}
-\subsection{Computational Work}
-The verification of Modiefied Newtonian Dynamics depends upon the Rotation Curve of the specific galaxy. The rotation curve gives us a relation between the rotational velocity and the distance of the astronomical object from teh centre. To gain the required result, I chose Andromeda Galaxy. Andromeda Galaxy is the nearest of our neighbours and its is a massive galaxy. To plot its rotation curve I was required to calculate the distances of the astronomical objects that comprise this galaxy and the mass distribution of the galaxy. Keeping the constraints of unavailability of any telescope in mind, i had to chose the technique of Image Analysis to relate the brightness to the mass distribution of the galaxy. 
-\subsubsection{Image Analysis of M31}
-The image analysis is done by different techniques. It basically allows us to extract meaningful information from a digital image. There are different techniques that could be used for image analysis. Different programming languages are used for image analysis. I used Python language for this purpose. Python is a precise coding language, that allows us to write longer codes in a few lines. 
 
-The purpose of image analysis was to relate the luminous mass by using luminosity profile to the distance of each pixel from the centre. The following program was used for the whole process. The image used is just an image of a quadrant of the galaxy, and further calculations are done on the basis of an assumption of circular symmetry of the galaxy. Following is the image released by Hubble Telescope Images in $2015$ and is used for the analysis. 
+\section{Computational Work}
+The verification of Modiefied Newtonian Dynamics depends upon the Rotation Curve of the specific galaxy. The rotation curve gives us a relation between the rotational velocity and the distance of the astronomical object from teh centre. To gain the required result, I chose Andromeda Galaxy. Andromeda Galaxy is the nearest of our neighbours and its is a massive galaxy. To plot its rotation curve I was required to calculate the distances of the astronomical objects that comprise this galaxy and the mass distribution of the galaxy. Keeping the constraints of unavailability of any telescope in mind, i had to chose the technique of Image Analysis to relate the brightness to the mass distribution of the galaxy.
+\subsection{Image Analysis of M31}
+The image analysis is done by different techniques. It basically allows us to extract meaningful information from a digital image. There are different techniques that could be used for image analysis. Different programming languages are used for image analysis. I used Python language for this purpose. Python is a precise coding language, that allows us to write longer codes in a few lines.
+
+The purpose of image analysis was to relate the luminous mass by using luminosity profile to the distance of each pixel from the centre. The following program was used for the whole process. The image used is just an image of a quadrant of the galaxy, and further calculations are done on the basis of an assumption of circular symmetry of the galaxy. Following is the image released by Hubble Telescope Images in $2015$ and is used for the analysis.
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.125]{andromeda.jpg}
 \caption{Andromeda Galaxy, M31, NGC 224}
 \end{figure}
 
-\subsubsection{Program for Image Analysis}
-The program was divided into a few parts to create a clear concept of purpose of each part. Following are the parts of the program. 
+\subsection{Program for Image Analysis}
+The program was divided into a few parts to create a clear concept of purpose of each part. Following are the parts of the program.
 \begin{enumerate}
 \item \textbf{Defining the Image Dimensions}
 
-The following code gives us the dimensions of the image being used and the spectral type of the image as the third entity. 
+The following code gives us the dimensions of the image being used and the spectral type of the image as the third entity.
 
 \begin{verbatim}
 
 andro = misc.imread('andromeda.jpg')
     (w, h,d) = andro.shape
 \end{verbatim}
- 
+
 Output: (1918,6000,3)
-   
+
 
 \item \textbf{Calculation of the Distance of Certain Pixel from the Centre of the Galaxy}
 
-This part defines the co-ordinates of the Origin as $x_{0}$ and $y_{0}$. This function iterates over the whole image to calaculate the distances of each pixel from the origin point by simple formula of the Pythagoras theorem. 
+This part defines the co-ordinates of the Origin as $x_{0}$ and $y_{0}$. This function iterates over the whole image to calaculate the distances of each pixel from the origin point by simple formula of the Pythagoras theorem.
 
 \begin{verbatim}
 
@@ -149,7 +164,7 @@ def calc_distance(x0,y0,x,y):
     return  math.sqrt(x_dist*x_dist+y_dist*y_dist)
 
 \end{verbatim}
-Output: 
+Output:
 
 \item \textbf{Intensity Calculation for Each Pixel}
 
@@ -171,11 +186,11 @@ def calc_gs_intensity(i):
 
 \end{verbatim}
 
-Output: 
+Output:
 
 \item \textbf{Storing the Data}
 
-From the previously explained parts of the program, i got a large number of values. So, to use the calculated data it is necessary to create a data file, that can store maximum number of values and can again be used to plot a graph. The values from the distances and the intensity values are stored simultaneously in a single CSV (comma separated values) file.  
+From the previously explained parts of the program, i got a large number of values. So, to use the calculated data it is necessary to create a data file, that can store maximum number of values and can again be used to plot a graph. The values from the distances and the intensity values are stored simultaneously in a single CSV (comma separated values) file.
 \begin{verbatim}
 
 with open('data.csv', 'w') as fout:
@@ -193,11 +208,11 @@ with open('data.csv', 'w') as fout:
 
 
 \end{verbatim}
-Output: 
+Output:
 
 \item \textbf{Histogram}
 
-Now, to analyze the mass distribution of M31, i plotted a histogram of radius versus Commulative Normalized Intensity. This gives us the mass density of the galaxy to be decreasing as we move far from the centre of the galaxy.  
+Now, to analyze the mass distribution of M31, i plotted a histogram of radius versus Commulative Normalized Intensity. This gives us the mass density of the galaxy to be decreasing as we move far from the centre of the galaxy.
 \begin{verbatim}
 def main():
 
@@ -228,6 +243,6 @@ def main():
 \end{enumerate}
 
 
-  
+
 
 \end{document}
