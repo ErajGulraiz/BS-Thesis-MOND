@@ -33,13 +33,39 @@
 }
 
 
+% Define the global variables and macros for populating them. These are used to specify the content of the front matter.
+\def\@dedication{}
+\def\@acknowledgement{}
+\def\@abstract{}
+
+\newcommand{\dedication}[1]{\def\@dedication{#1}}
+\newcommand{\acknowledgement}[1]{\def\@acknowledgement{#1}}
+\newcommand{\abstract}[1]{\def\@abstract{#1}}
+
+
 % Define the command for creating ALL of the front matter right up to the first chapter
 \newcommand{\makefrontmatter}{
 
     \maketitle
 
-    % Consists of the Dedication, Acknowledgement, Abstract .etc
+    % Create the dedication page
+    \cleardoublepage            % Creates a new page ensuring that if needed an empty page is inserted to ensure the following is on an odd page
+    \vspace*{3cm}               % Empty space above the dedication text
+    \thispagestyle{empty}       % Remove all formatting and styling from the current page
+    \begin{center}
+        \Large \emph{\@dedication}      % The dedication is centered horizontally and is italicized
+    \end{center}
+
+    % Consists of the Acknowledgement, Abstract .etc
     \frontmatter
+
+    \cleardoublepage
+    \chapter{Acknowledgement}
+    \@acknowledgement
+
+    \cleardoublepage
+    \chapter{Abstract}
+    \@abstract
 
     \tableofcontents
 
