@@ -35,6 +35,14 @@
 
 \makeatletter
 
+% Define a macro that takes two arguments. Only if the first is non-empty will the second be executed.
+\newcommand{\ifnotempty}[2]{
+    \ifx#1\empty                % if #1 is empty then (skipped to 'else' which is executed when #1 is non-empty)
+    \else
+        \expandafter#2          % \expandafter ensures that #2 is expanded after the conditional is evaluated so that the correct order is followed
+    \fi
+}
+
 % Define the global variables and macros for populating them. These are used to specify the content of the front matter.
 \def\@dedication{}
 \def\@acknowledgement{}
@@ -51,32 +59,29 @@
     \maketitle
 
     % Create the dedication page (but only if \@dedication is non-empty)
-    \ifx\@dedication\empty
-    \else
+    \ifnotempty{\@dedication}{%
         \cleardoublepage            % Creates a new page ensuring that if needed an empty page is inserted to ensure the following is on an odd page
         \vspace*{3cm}               % Empty space above the dedication text
         \thispagestyle{empty}       % Remove all formatting and styling from the current page
         \begin{center}
             \Large \emph{\@dedication}      % The dedication is centered horizontally and is italicized
         \end{center}
-    \fi
+    }
 
     % Consists of the Acknowledgement, Abstract .etc
     \frontmatter
 
-    \ifx\@acknowledgement\empty
-    \else
+    \ifnotempty{\@acknowledgement}{
         \cleardoublepage
         \chapter{Acknowledgement}
         \@acknowledgement
-    \fi
+    }
 
-    \ifx\@abstract\empty
-    \else
+    \ifnotempty{\@abstract}{
         \cleardoublepage
         \chapter{Abstract}
         \@abstract
-    \fi
+    }
 
     \tableofcontents
 
