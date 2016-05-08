@@ -17,23 +17,11 @@
 
 \begin{document}
 
-    \maketitle
-
-    % Consists of the Dedication, Acknowledgement, Abstract .etc
-    \frontmatter
-
-    \tableofcontents
-
-    \addcontentsline{toc}{chapter}{List of Figures}
-    \listoffigures
-
-    % Declare that the main matter is starting
-    \mainmatter
+    \makefrontmatter        % Create all of the pages before the first chapter: title, dedication, ack, abstract, ToC, LoF .etc
 
     \include{chap1}
     \include{chap2}
 
-    \addcontentsline{toc}{chapter}{References}      % Add references to ToC
-    \printbibliography
+    \makereferences         % Create the references section
 
 \end{document}
