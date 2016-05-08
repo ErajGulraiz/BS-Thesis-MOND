@@ -33,6 +33,8 @@
 }
 
 
+\makeatletter
+
 % Define the global variables and macros for populating them. These are used to specify the content of the front matter.
 \def\@dedication{}
 \def\@acknowledgement{}
@@ -48,24 +50,33 @@
 
     \maketitle
 
-    % Create the dedication page
-    \cleardoublepage            % Creates a new page ensuring that if needed an empty page is inserted to ensure the following is on an odd page
-    \vspace*{3cm}               % Empty space above the dedication text
-    \thispagestyle{empty}       % Remove all formatting and styling from the current page
-    \begin{center}
-        \Large \emph{\@dedication}      % The dedication is centered horizontally and is italicized
-    \end{center}
+    % Create the dedication page (but only if \@dedication is non-empty)
+    \ifx\@dedication\empty
+    \else
+        \cleardoublepage            % Creates a new page ensuring that if needed an empty page is inserted to ensure the following is on an odd page
+        \vspace*{3cm}               % Empty space above the dedication text
+        \thispagestyle{empty}       % Remove all formatting and styling from the current page
+        \begin{center}
+            \Large \emph{\@dedication}      % The dedication is centered horizontally and is italicized
+        \end{center}
+    \fi
 
     % Consists of the Acknowledgement, Abstract .etc
     \frontmatter
 
-    \cleardoublepage
-    \chapter{Acknowledgement}
-    \@acknowledgement
+    \ifx\@acknowledgement\empty
+    \else
+        \cleardoublepage
+        \chapter{Acknowledgement}
+        \@acknowledgement
+    \fi
 
-    \cleardoublepage
-    \chapter{Abstract}
-    \@abstract
+    \ifx\@abstract\empty
+    \else
+        \cleardoublepage
+        \chapter{Abstract}
+        \@abstract
+    \fi
 
     \tableofcontents
 
@@ -83,3 +94,5 @@
     \addcontentsline{toc}{chapter}{References}      % Add references to ToC
     \printbibliography
 }
+
+\makeatother
