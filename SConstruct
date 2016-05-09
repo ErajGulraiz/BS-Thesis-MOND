@@ -63,7 +63,7 @@ env.AppendUnique(PDFLATEXFLAGS='-halt-on-error')    # Halts compilation on the f
 pdf = env.PDF(target=PDFFILE, source=TEXFILE)
 
 # Declare additional files to be cleaned when 'scons -c' is run
-env.Clean(pdf, ['thesis.run.xml'])
+env.Clean(pdf, ['thesis.run.xml', 'thesis.synctex'])
 
 
 # We create an instance of the Show builder and make it the primary dependency of this project. The rest are connected to it through the builders defined above
