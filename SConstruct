@@ -18,7 +18,13 @@ def show_pdf(target, source, env, for_signature):
     if "evince" in out:
         return "evince {} &".format(source[0])
     else:
-        return 'mupdf {} &'.format(source[0])
+        # Determine if the pdf file is already open in mupdf
+        out = subprocess.check_output(['wmctrl', '-l'])
+
+        if out.find(PDFFILE):                           # True if the PDFFILE is already open in which case it shows up in wmctrl
+            return 'wmctrl -R {} && xdotool key r'.format(PDFFILE)
+
+        return 'mupdf {} &'.format(PDFFILE)
 
 # We create a custom builder that uses the show_pdf generator to show the specified file
 show_builder = Builder(generator = show_pdf)
