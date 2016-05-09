@@ -7,7 +7,7 @@
 \ProvidesPackage{ciit-dissertation}[2016/05/08]
 
 
-\RequirePackage{biblatex}
+\RequirePackage[backend=biber]{biblatex}
 \RequirePackage{emptypage}      % suppress page numbers of empty pages
 \RequirePackage{fancyhdr}       % used to style the page numbers
 \RequirePackage[margin=1in]{geometry}
@@ -48,10 +48,24 @@
 \def\@dedication{}
 \def\@acknowledgement{}
 \def\@abstract{}
+\def\@program{}
+\def\@dissertationtype{}
 
 \newcommand{\dedication}[1]{\def\@dedication{#1}}
 \newcommand{\acknowledgement}[1]{\def\@acknowledgement{#1}}
 \newcommand{\abstract}[1]{\def\@abstract{#1}}
+\newcommand{\program}[1]{\def\@program{#1}}
+\newcommand{\dissertationtype}[1]{\def\@dissertationtype{#1}}
+
+
+% Renew the \maketitle macro so that it creates the title pages we want:
+\renewcommand{\maketitle}{
+    \begin{center}
+        {\LARGE \@title}\\
+        \vspace{1.5\baselineskip}
+        \includegraphics[width=0.3\textwidth]{comsats-logo}
+    \end{center}
+}
 
 
 % Define the command for creating ALL of the front matter right up to the first chapter
