@@ -1,5 +1,5 @@
 *.aux
-*.pdf
+thesis.pdf
 *.synctex.gz
 *.log
 *.tex.bak
