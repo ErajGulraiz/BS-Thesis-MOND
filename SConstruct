@@ -21,7 +21,7 @@ def show_pdf(target, source, env, for_signature):
         # Determine if the pdf file is already open in mupdf
         out = subprocess.check_output(['wmctrl', '-l'])
 
-        if out.find(PDFFILE):                           # True if the PDFFILE is already open in which case it shows up in wmctrl
+        if out.find(PDFFILE) >= 0:                           # True if the PDFFILE is already open in which case it shows up in wmctrl and out.find() returns a semi-positive number for the position of the substring
             return 'wmctrl -R {} && xdotool key r'.format(PDFFILE)
 
         return 'mupdf {} &'.format(PDFFILE)
