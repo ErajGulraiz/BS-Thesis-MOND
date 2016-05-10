@@ -50,12 +50,14 @@
 \def\@abstract{}
 \def\@program{}
 \def\@dissertationtype{}
+\def\@session{}
 
 \newcommand{\dedication}[1]{\def\@dedication{#1}}
 \newcommand{\acknowledgement}[1]{\def\@acknowledgement{#1}}
 \newcommand{\abstract}[1]{\def\@abstract{#1}}
 \newcommand{\program}[1]{\def\@program{#1}}
 \newcommand{\dissertationtype}[1]{\def\@dissertationtype{#1}}
+\newcommand{\session}[1]{\def\@session{#1}}
 
 
 % Renew the \maketitle macro so that it creates the title pages we want:
@@ -64,6 +66,12 @@
         {\LARGE \@title}\\
         \vspace{1.5\baselineskip}
         \includegraphics[width=0.3\textwidth]{comsats-logo}
+        \vspace{3\baselineskip}\\
+        {\large \MakeUppercase{\@program}}\\
+        {\large \@dissertationtype}\\
+        \vspace{5\baselineskip}
+        {\LARGE COMSATS Institute of Information\\Technology, Islamabad\\\@session}
+
     \end{center}
 }
 
