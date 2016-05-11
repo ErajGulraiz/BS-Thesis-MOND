@@ -44,6 +44,10 @@
     \fi
 }
 
+% Define constants that can be used by the author
+\def\undergraduate{Undergraduate}
+\def\graduate{Graduate}
+
 % Define the global variables and macros for populating them. These are used to specify the content of the front matter.
 \def\@dedication{}
 \def\@acknowledgement{}
@@ -51,6 +55,8 @@
 \def\@program{}
 \def\@dissertationtype{}
 \def\@session{}
+\def\@department{}
+\def\@degreetype{}
 
 \newcommand{\registrationnumber}[1]{\def\@registrationnumber{#1}}
 \newcommand{\dedication}[1]{\def\@dedication{#1}}
@@ -59,6 +65,8 @@
 \newcommand{\program}[1]{\def\@program{#1}}
 \newcommand{\dissertationtype}[1]{\def\@dissertationtype{#1}}
 \newcommand{\session}[1]{\def\@session{#1}}
+\newcommand{\department}[1]{\def\@department{#1}}
+\newcommand{\degreetype}[1]{\def\@degreetype{#1}}
 
 
 % Renew the \maketitle macro so that it creates the title pages we want:
@@ -96,6 +104,22 @@
         {By}\\[\baselineskip]
         {\large \@author}\\
         {\large \@registrationnumber}\\
+    \end{center}
+
+    % Third title page
+    \cleardoublepage
+    \thispagestyle{empty}
+    \begin{center}
+        {\large \@title}\\
+        \vspace{\baselineskip}
+        % ToDo: Choose the correct article based on the degree type by writing an 'if' based macro
+        {\large An \@degreetype { }\@dissertationtype { submitted}\\ to the Department of}\\
+        \vspace{\baselineskip}
+        {\large \@department}\\
+        \vspace{\baselineskip}
+        {\large as partial fulfilment for the award of Degree}\\
+        \vspace{\baselineskip}
+        {\large \@program}
     \end{center}
 }
 
