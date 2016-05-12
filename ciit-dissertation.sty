@@ -9,6 +9,7 @@
 
 \RequirePackage[backend=biber]{biblatex}
 \RequirePackage{emptypage}      % suppress page numbers of empty pages
+\RequirePackage{enumitem}       % Change indentation of itemize and enumerate
 \RequirePackage{fancyhdr}       % used to style the page numbers
 \RequirePackage[margin=1in]{geometry}
 \RequirePackage[double spacing]{set space}
@@ -57,7 +58,10 @@
 \def\@session{}
 \def\@submissiondate{}
 \def\@department{}
+\def\@campus{}
 \def\@degreetype{}
+\def\@supervisor{}
+\def\@supervisordesignation{}
 
 \newcommand{\registrationnumber}[1]{\def\@registrationnumber{#1}}
 \newcommand{\dedication}[1]{\def\@dedication{#1}}
@@ -68,8 +72,10 @@
 \newcommand{\session}[1]{\def\@session{#1}}
 \newcommand{\submissiondate}[1]{\def\@submissiondate{#1}}
 \newcommand{\department}[1]{\def\@department{#1}}
+\newcommand{\campus}[1]{\def\@campus{#1}}
 \newcommand{\degreetype}[1]{\def\@degreetype{#1}}
-
+\newcommand{\supervisor}[1]{\def\@supervisor{#1}}
+\newcommand{\supervisordesignation}[1]{\def\@supervisordesignation{#1}}
 
 % Renew the \maketitle macro so that it creates the title pages we want:
 \renewcommand{\maketitle}{
@@ -128,7 +134,7 @@
 
     % Fourth title page: Final Approval
 
-    % Fourth title page: Declaration
+    % Fifth title page: Declaration
     \cleardoublepage
     \thispagestyle{empty}
     \vspace{\baselineskip}
@@ -140,12 +146,38 @@
     {I}, hereby declare that this project neither as a whole not as a part there of has been copied out from any source. It is further declared that {I} have developed this \@dissertationtype { and} the accompanied report entirely on the basis of {my} personal efforts made under the sincere guidance of {my} {supervisor}. No portion of the work presented in this report has been submitted for any other degree of qualification of this or any other University or Institute of learning, if found {I} shall stand responsible.
     \vspace{1\baselineskip}
     \begin{flushright}
-        % \raggedleft
         \@submissiondate\\
         \vspace{2\baselineskip}
         \@author\\
         \@registrationnumber
     \end{flushright}
+
+
+    % Sixth title page: Certificate
+    \cleardoublepage
+    \thispagestyle{empty}
+    \vspace{\baselineskip}
+    \begin{center}{\Large Certificate}\end{center}
+    \vspace{\baselineskip}
+    {It is certified that \@author { (\@registrationnumber)} has carried out all the work related to this \@dissertationtype { under} my supervision at the Department of \@department, COMSATS Institute of Information Technology, \@campus { and} the work fulfills the requirements for award of \@program { degree}.\par}
+    \vspace{\baselineskip}
+    {\@submissiondate\par}
+    \vspace{1.5\baselineskip}
+    Supervisor:\\
+    \vspace{1.5\baselineskip}
+    \rule[-2\baselineskip]{0.25\textwidth}{1pt}
+
+    \vspace{-1.75\baselineskip}
+    \begingroup
+        \renewcommand{\labelitemi}{}        % Remove the bullets
+        \begin{itemize}[leftmargin=*]       % Remove the left margin
+            \setlength\itemsep{-0.3\baselineskip}       % Decrease the vertical space between items
+            \item \@supervisor
+            \item \@supervisordesignation
+            \item Department of \@department
+            \item CIIT, \@campus { Campus}.
+        \end{itemize}
+    \endgroup
 }
 
 
