@@ -62,6 +62,8 @@
 \def\@degreetype{}
 \def\@supervisor{}
 \def\@supervisordesignation{}
+\def\@hod{}
+\def\@hoddesignation{}
 
 \newcommand{\registrationnumber}[1]{\def\@registrationnumber{#1}}
 \newcommand{\dedication}[1]{\def\@dedication{#1}}
@@ -76,6 +78,8 @@
 \newcommand{\degreetype}[1]{\def\@degreetype{#1}}
 \newcommand{\supervisor}[1]{\def\@supervisor{#1}}
 \newcommand{\supervisordesignation}[1]{\def\@supervisordesignation{#1}}
+\newcommand{\hod}[1]{\def\@hod{#1}}
+\newcommand{\hoddesignation}[1]{\def\@hoddesignation{#1}}
 
 % Renew the \maketitle macro so that it creates the title pages we want:
 \renewcommand{\maketitle}{
@@ -166,7 +170,6 @@
     Supervisor:\\
     \vspace{1.5\baselineskip}
     \rule[-2\baselineskip]{0.25\textwidth}{1pt}
-
     \vspace{-1.75\baselineskip}
     \begingroup
         \renewcommand{\labelitemi}{}        % Remove the bullets
@@ -176,6 +179,21 @@
             \item \@supervisordesignation
             \item Department of \@department
             \item CIIT, \@campus { Campus}.
+        \end{itemize}
+    \endgroup
+
+    \vspace{2\baselineskip}
+    Head of Department:\\
+    \vspace{1.5\baselineskip}
+    \rule[-2\baselineskip]{0.25\textwidth}{1pt}
+    \vspace{-1.75\baselineskip}
+    \begingroup
+        \renewcommand{\labelitemi}{}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{-0.3\baselineskip}
+            \item \@hod
+            \item \@hoddesignation
+            \item \@department
         \end{itemize}
     \endgroup
 }
