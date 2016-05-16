@@ -198,11 +198,33 @@ def main():
     plt.show()
 
 \end{verbatim}
+
 \begin{figure} [h]
 \centering
-\includegraphics[scale=0.5]{histogram.jpg}
+\includegraphics[scale=0.35]{histogram.jpg}
 \caption{Mass Distribution of the Andromeda Galaxy }
 \end{figure}
 
-
 \end{enumerate}
+
+\section{Calculation of Force}
+
+According to Newton's second law, force is directly proportional to acceleration keeping mass constant. For the calculation of force on the objects inside the galaxy, we consider it to be a set of concentric rings. The histogram from the above section gives us the mass ditribution of the galaxy as moving through the radius. To find the force on a mass inside and outside a specific ring, Elliptic Integrals are used. 
+
+Let us consider the problem of finding the Gravitational potential in all space produced by a ring of mass M. In most analytical approaches to problem, solution is found only along the symmetry axis of the ring, where the integrals are expressed in terms of elementry functions. To solve for the potential of galaxy we require to calculate the off-axis solution that involves special functions. 
+ 
+The system i am working on is given by the figure below. A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r .(description to be asked)
+
+$ \vec{r} = r.\hat{i} $
+
+$ \vec{R} = R(cos\theta \hat{i} + sin\theta \hat{j} ) $
+
+$ \vec{p} = \vec{R}-\vec{r} $
+
+$ = (Rcos\theta-r)\hat{i}+Rsin\theta\hat{j} $
+
+$ \vert \vec{p}\vert = \sqrt{(Rcos\theta-r)^{2} + (Rsin\theta )^{2} }$
+
+$ d\vec{F}= \frac{GmdM}{\vert (\vec{p})\vert ^{3}} . \vec{p} $
+
+$ \vec{F} = \int {d\vec{F}} $
