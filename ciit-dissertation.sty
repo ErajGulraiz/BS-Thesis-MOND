@@ -148,8 +148,27 @@
                 \hline
             \end{tabularx}
         \end{table}
-        % Add missing portion
     \end{center}
+
+    \hspace{-1em}Supervisor:\\
+    \vspace{-1\baselineskip}
+    \begingroup
+        \renewcommand{\labelitemi}{}        % Remove the bullets
+        \begin{itemize}[leftmargin=*]       % Remove the left margin
+            \setlength\itemsep{-0.3\baselineskip}       % Decrease the vertical space between items
+            \item \@supervisor
+            \item \@supervisordesignation
+            \item Department of \@department,
+            \item CIIT, \@campus { Campus}
+        \end{itemize}
+    \endgroup
+
+    \vspace{1.5\baselineskip}
+    \begin{flushright}
+        \rule{0.25\textwidth}{1pt}\\
+        \@author\\
+        \@registrationnumber
+    \end{flushright}
 
     % Fourth title page: Final Approval
 
