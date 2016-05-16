@@ -8,14 +8,14 @@
 
 
 \RequirePackage[backend=biber]{biblatex}
-\RequirePackage{colortbl}
+\RequirePackage{colortbl}       % Used to change background color of table rows
 \RequirePackage{emptypage}      % suppress page numbers of empty pages
 \RequirePackage{enumitem}       % Change indentation of itemize and enumerate
 \RequirePackage{fancyhdr}       % used to style the page numbers
 \RequirePackage[margin=1in]{geometry}
 \RequirePackage[double spacing]{set space}
 \RequirePackage{tabularx}
-\RequirePackage{xcolor}
+\RequirePackage{xcolor}         % Used by colortbl and to change the color of text
 
 
 % Rename the Bibliography title to read "References"
@@ -142,7 +142,7 @@
             \begin{tabularx}{0.9\textwidth}{|>{\centering\Large}X|>{\Large\centering}X|}
                 \hline
                 \rowcolor{gray}
-                Name & Registration No.\tabularnewline
+                \textcolor{white}{Name} & \textcolor{white}{Registration No.}\tabularnewline
                 \hline
                 \@author & \@registrationnumber\tabularnewline
                 \hline
