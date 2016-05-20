@@ -1,4 +1,4 @@
-\chapter{Modified Newtonian Dynamics (MOND) [6]}
+  \chapter{Modified Newtonian Dynamics (MOND) [6]}
 
 MOND is an algorithm that allows us the calculations of distribution of the effective gravitational force in astronomical objects from the distribution of baryonic matter with one additional fundamental parameter that has the dimensions od acceleration. This  is done by the determination of rotation curves of disk galaxies, and relating it with normal keplerian motion of the galaxies.
 
@@ -215,16 +215,51 @@ Let us consider the problem of finding the Gravitational potential in all space 
  
 The system i am working on is given by the figure below. A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r .(description to be asked)
 
-$ \vec{r} = r.\hat{i} $
+(mathematical)
 
-$ \vec{R} = R(cos\theta \hat{i} + sin\theta \hat{j} ) $
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{force41R} 
+\caption{force on a single ring }
+\end{figure}
 
-$ \vec{p} = \vec{R}-\vec{r} $
+\subsubsection{Function Definition for Calculation of Force}
+\begin{verbatim}
+def q(r,R) :
 
-$ = (Rcos\theta-r)\hat{i}+Rsin\theta\hat{j} $
+    return r*r+R*R+2*r*R
 
-$ \vert \vec{p}\vert = \sqrt{(Rcos\theta-r)^{2} + (Rsin\theta )^{2} }$
+def k(r,R,con) :
+    b = float(4*r*R)
+    return (b/con)
 
-$ d\vec{F}= \frac{GmdM}{\vert (\vec{p})\vert ^{3}} . \vec{p} $
+def f(m,M,R,r,con,ks,g):
+    d= 2*R - ks * (r+R)
+    E=  ellipe(ks**0.5 )          ##(elliptic function of 2nd kind)
+    j= (1-ks)
+    G= 2*R* ellipk(ks**0.5)       ## elliptic function of 1st kind
+    h= math.pi * (con ** 1.5) *j
 
-$ \vec{F} = \int {d\vec{F}} $
+    return (((-1*M*ms*g)/ h) * (1/ks)* (G *j -E *d) )
+
+def F(ms,M,R,r):
+
+    # print(r)s
+    # print(R)
+    con = q(r,R)
+    # print (con)
+    ks = k(r,R,con)
+    # print (ks)
+    g = 6.67e-11
+
+    # fa = f(m,M,R,r,con,ks,g)
+    # print (fa)
+
+
+    return f(ms,M,R,r,con,ks,g)
+
+\end{verbatim}
+
+\subsection{Calculation for Velocity }
+(mathematical)
+\subsubsection{Function Definition for Velocity}
