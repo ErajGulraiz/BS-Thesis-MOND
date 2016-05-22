@@ -209,25 +209,26 @@ def main():
 
 \section{Calculation of Force}
 
-According to Newton's second law, force is directly proportional to acceleration keeping mass constant. For the calculation of force on the objects inside the galaxy, we consider it to be a set of concentric rings. The histogram from the above section gives us the mass ditribution of the galaxy as moving through the radius. To find the force on a mass inside and outside a specific ring, let us consider the galaxy to be a collection of concentric rings. The force on a particle at radius 'r' will be the commulative effect of force due to the rings before and after the radius 'r'.
+According to Newton's second law, force is directly proportional to acceleration keeping mass constant. For the calculation of force on the objects inside the galaxy, we consider it to be a set of concentric rings. The histogram from the above section gives us the mass ditribution of the galaxy as moving through the radius. The force on a particle at radius 'r' will be the commulative effect of force due to the rings before and after the radius 'r'.
 
 Let us consider the problem of finding the Gravitational potential in all space produced by a ring of mass M. In most analytical approaches to problem, solution is found only along the symmetry axis of the ring, where the integrals are expressed in terms of elementry functions. To solve for the potential of galaxy we require to calculate the off-axis solution that involves special functions or in this case Elliptic Integrals.
  
-The system i am working on is given by the figure below. A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r .(description to be asked)
+The system i am working on is given by the figure below. (figure 1 figure 2 )A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r . (description to be asked)
 
-\begin{figure}[!tbp]
+\begin{figure}[!tbp] 
 \centering
-\begin{minipage}[b]{0.4\textwidth}[h]
+\begin{minipage}[b]{0.4\textwidth}
 \includegraphics[width=\textwidth]{fig2}
 \caption{Figure A}
 \end{minipage}
 \hfill
-\begin{minipage}[b]{0.4\textwidth}[h]
+\begin{minipage}[b]{0.4\textwidth}
 \includegraphics[width=\textwidth]{fig1}
 \caption{Figure B}
 \end{minipage}
 \end{figure}
 
+\begin{center}
 $ \vec{r} = r.\hat{i} $
 
 $ \vec{R} = R(cos \theta \hat{i} + sin \theta \hat{j} ) $
@@ -239,29 +240,145 @@ $ = (R cos \theta-r) \hat{i} + R sin \theta \hat{j} $
 
 $ \vert \vec{p}\vert = \sqrt{(R cos \theta - r)^{2} + (R sin \theta )^{2} }$
 
-$ d{\Phi}= \frac{GmdM}{\vert (\vec{p})\vert} $
+
+ 
+
+The Gravitational Potential is given by 
+
+\begin{equation}
+ d{\Phi}= \frac{GmdM}{\vert (\vec{p})\vert} 
+\end{equation}
+
 
 $ \Phi = \int {d{\Phi}} $
+  
 
 $ d M = \lambda R d \theta  $
 
-$ \Phi= \frac{GMmR}{2\pi R} \int_{0}^{2\pi} \frac {d \theta } {\vert \vec{p} \vert^\frac{1}{2}}$
+By substituting Linear Mass Distribution ,
 
-$\Phi= \frac{GMm}{2\pi} \int_{0}^{2\pi}  
-\frac{d{\theta}}{\sqrt{R^2 - 2 R \cos \theta + r^2}}$
+\begin{equation}
+\Phi= \frac{GMmR}{2\pi R} \int_{0}^{2\pi} \frac {d \theta } {\vert \vec{p} \vert^\frac{1}{2}}
+\end{equation}
+
+\begin{equation}
+\Phi= \frac{GMm}{2\pi} \int_{0}^{2\pi}  
+\frac{d{\theta}}{\sqrt{R^2 - 2 R r \cos \theta + r^2}}
+\end{equation}
+
+
+substitution of the following parameters in the equation (2.8) gives us (2.9)
 
 $ d \theta = 2 d \beta $,
 $ \theta = \pi - 2 \beta $,
 $ \beta = \frac{\pi - \theta}{2} $
 
-$ \Phi (\vec{r}) = \frac{GMm}{ \pi} \int_{0}^{\pi}  \frac{d \beta }{\sqrt{r^2 + R^2 +2 R r (1 - 2 \sin^2 \beta )}}  $
+\begin{equation}
+\Phi (\vec{r}) = \frac{GMm}{ \pi} \int_{0}^{\frac{\pi}{2}}  \frac{d \beta }{\sqrt{r^2 + R^2 +2 R r (1 - 2 \sin^2 \beta )}}  
+\end{equation}
+
+\begin{equation}
+\Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} \int_{0}^{\frac{ \pi}{2}} \frac{d \beta }{\sqrt{1 - \frac{4 r R}{q} \sin^2 \beta}}   
+\end{equation}
+ 
+
+$ q = r^2 + R^2 +2 r R, $ 
+$ k = \sqrt{\frac{4 r R }{q}} $
+$ k^2 = \frac{4 r R}{q} $
+
+subtitution of the following in equation(2.10) results in :
+
+\begin{equation}
+\Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} \int_{0}^{\frac{ \pi}{2}} \frac{d \beta } {1 - k^2 \sin \beta } 
+\end{equation}
+
+we know that the equation 2.12 is the Elliptic Integral of First kind,
+\begin{equation}
+\frac{d \beta } {1 - k^2 \sin \beta } = K (k) 
+\end{equation}
+ 
+by substituting in equation (2.11)
+
+\begin{equation}
+ \Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} K (k) 
+\end{equation}
+
+Force is given by
+\begin{equation}
+ \vec{F} = - \bigtriangledown  \Phi 
+\end{equation}
+\end{center}
+
+we know that,
+\begin{center}
+
+\begin{equation}
+\frac{\partial K (k)}{\partial k } = \frac{E(k)- (1-k^2) K(k)}{k(1- k^2)} 
+\end{equation}
+\end{center}
+where, E(k) is the Eliiptic Integral of Second kind,
+
+\begin{center}
+
+\begin{equation}
+ \frac{\partial q}{\partial r} = 2 (r + R)
+\end{equation}
+
+\begin{equation}
+ \frac{\partial k}{\partial r} = \frac{2R - k^2 (r + R)}{kq} 
+\end{equation}
+
+\begin{equation}
+\frac{d K(k)}{d k} = \frac{E(k) - (1-k^2) K(k)}{k (1-k^2)} 
+\end{equation}
+
+\begin{equation}
+\frac{\partial K (r)}{\partial r} = \frac{d K(k)}{dk} \frac{\partial k }{r} 
+\end{equation}
+
+\begin{equation}
+\frac{\partial \Phi}{\partial r} = - \frac{GMm }{\pi} [ \frac{E(k) - (1-k^2) K(k)}{k (1-k^2)} (\frac{2R - k^2 (r + R)}{kq} \sqrt{q}) - (\frac{\frac{1}{2} \frac{1}{\sqrt{q}}2 (r + R ) K(k)} {q}] 
+\end{equation}
+
+\end{center}
+
+Simplifying,
+
+\begin{center}
 
 
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.5]{force41R} 
-\caption{force on a single ring }
-\end{figure}
+$ = - \frac{GMm }{\pi} [\frac{\frac{(E(k)- (1 - k^2 )K(k))(2 R - k^2 (r + R)) - (r + R) K(k) k^2 (1 - k^2)}{k^2 (1-k^2)\sqrt{q}}}{q}] $
+
+
+$ = - \frac{GMm }{\pi} [\frac{2 R E(k) - E (k) k^2 (r+R) - 2 R(1-k^2) K(k)}{k^2 (1 - k^2) q^\frac{3}{2}}] $
+
+
+
+
+
+\begin{equation}
+ = - GMm \frac{1}{\pi k^2 (1 - k ^2)  q^\frac{3}{2}} [2 R E (k) - k^2 r E(k)- k^2 R E(k) - 2 R K(k) + 2 R k^2 K(k)]
+\end{equation}
+
+\begin{equation}
+ = - GMm \frac{1}{\pi k^2 (1 - k ^2)  q^\frac{3}{2}} [E (k) 2R - k^2 (r + R) - 2 R K(k) (1 - k^2) ] 
+\end{equation}
+\end{center}
+ 
+substituting,
+ \begin{center}
+ $ \mu = k^2  $
+ \end{center}
+
+
+The final expression for Gravitational Force is:
+\begin{center}
+
+\begin{equation}
+ \vec{F}_{r} = - GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\sqrt{\mu}) (1 - \mu))- E (\sqrt{\mu}) (2 R - \mu (r + R))
+\end{equation}
+
+\end{center}
 
 \subsubsection{Function Definition for Calculation of Force}
 \begin{verbatim}
@@ -299,6 +416,12 @@ def F(ms,M,R,r):
     return f(ms,M,R,r,con,ks,g)
 
 \end{verbatim}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{force41R} 
+\caption{force on a single ring }
+\end{figure}
 
 \subsection{Calculation for Velocity }
 (mathematical)
