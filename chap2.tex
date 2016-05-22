@@ -201,7 +201,7 @@ def main():
 
 \begin{figure} [h]
 \centering
-\includegraphics[scale=0.35]{histogram.jpg}
+\includegraphics[scale=0.45]{400}
 \caption{Mass Distribution of the Andromeda Galaxy }
 \end{figure}
 
@@ -382,6 +382,34 @@ The final expression for Gravitational Force is:
 
 \end{center}
 
+\subsection{Data from Histogram}
+To calculate force, we require information about the masses of the rings. For that purpose, we extracted data from the Histogram of masses plotted as a function of normalized intensity. In astronomy, we have direct relation between the Luminosity and Masses of a celestial object, i.e. 
+
+\begin{equation}
+\frac{L}{L_{\odot}} = (\frac{M}{M_{\odot}})^4 
+\end{equation}
+
+So by saving the values of luminosity from the same file, we used in section 2.2.2 , and convert it into mass using the equation above. 
+
+\subsection{Function Definition for Data Extraction from Histogram}
+\begin{verbatim}
+
+    with open('data.csv', 'w') as fout:
+
+        for x in range(w):
+            for y in range (h):
+
+                r= calc_distance(x0,y0,x,y)
+                i = calc_gs_intensity( andro[x,y] )
+                m= i**0.25 
+
+                print (r,i,m)
+
+
+                fout.write(str(r) + "," + str(i)+ "," + str(m) + "\n")
+
+\end{verbatim}
+
 
 \subsection{Function Definition for Calculation of Force}
 \begin{verbatim}
@@ -426,7 +454,10 @@ def F(ms,M,R,r):
 \caption{force on a single ring }
 \end{figure}
 
+
+
 \section{Calculation for Velocity }
+
 Centripetal force is known to be,
 
 \begin{center}
@@ -469,28 +500,76 @@ v = \sqrt{\frac{GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\
         return vs
 \end{verbatim}
 
-\subsection{Data from Histogram}
-To calculate force, we require information about the masses of the rings. For that purpose, we extracted data from the Histogram of masses plotted as a function of normalized intensity. In astronomy, we have direct relation between the Luminosity and Masses of a celestial object, i.e. 
+\section{Observed Rotation Curve}
 
-\begin{equation}
-\frac{L}{L_{\odot}} = (\frac{M}{M_{\odot}})^4 
-\end{equation}
 
-So by saving the values of luminosity from the same file, we used in section 2.2.2 , and convert it into mass using the equation above. 
+The survey of Andromeda Galaxy according to [15], gives us the rotation curve measured out to $38$ kpc, showing a nuclear peak at $340$ km s$^{-1}$ , a dip at $202$ km s$^{-1}$ around $4$ kpc, two distinct flat parts at $264$ km s$^{-1}$  and $230$ km s$^{-1}$ and an increase to $275$  km s $^{-1}$ in the outermost regions.
+ 
+ Regenerating the curve, using the following program,  
 \begin{verbatim}
-   Mass =[] #mass of the ring
-    Rad=[]
 
-    with open ('histdata.csv', 'r') as f:
-        for row in f:
-            values= row.split(',')
+x= []
+y= []
 
-            Rad.append(float(values[0])) #saves values of radius               from data file in empty list.
-            Mass.append(float(values[1])) #saves the value of masses in empty list 
+with open ('rd.txt','r') as f:
+    for row in f:
+
+        x.append((row))
+
+
+
+with open ('vrot.txt', 'r') as f1:
+    for row1 in f1:
+
+        y.append((row1))
+
+
+pylab.ylim([0,400])
+pylab.xlim([0,35])
+plt.plot(x,y)
+plt.scatter(x,y)
+
+
 \end{verbatim}
 
-\subsection{Optimization of Velocity and Mass}
-The rotation curve obtained from the data, that was calculated using Image Analysis as explained in section 2.2.2
+The following curve is obtained, as the observed rotation curve of M31.
+
+\begin{figure} [h]
+\centering
+\includegraphics[scale=0.5]{rotcurve}
+\caption{Observed Rotation Curve for Andromeda Galaxy}
+\end{figure}
+\section{Optimization of Velocity and Mass}
+The rotation curve obtained from the data, that was calculated using Image Analysis as explained in section 2.2.1  
+
+\begin{verbatim}
+a,b = scipy.optimize.curve_fit(fit.v, R, V)
+    print (a)
+    print b
+
+
+    v0 = a[0]
+    m0 = a[1]
+    v = fit.v(R,v0,m0)   #for black hole mass
+    pmv = plt.scatter(R,v, color= 'g',label ='m0 & v0')
+    plt.plot(R,v)
+
+
+    vo = fit.v(R,v0,m0_o)  #for very small mass .. i.e the first entry in the list.
+    pv = plt.scatter(R,vo , color='y', label = 'v0')
+    plt.plot(R,vo)
+\end{verbatim}
+
+\begin{figure} [h]
+\centering
+\includegraphics[scale=0.5]{best}
+\caption{Rotation Curve for Andromeda Galaxy}
+\end{figure}
+
+\section{Need for Optimization}
+
+
+
 
 
 
