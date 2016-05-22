@@ -213,7 +213,7 @@ According to Newton's second law, force is directly proportional to acceleration
 
 Let us consider the problem of finding the Gravitational potential in all space produced by a ring of mass M. In most analytical approaches to problem, solution is found only along the symmetry axis of the ring, where the integrals are expressed in terms of elementry functions. To solve for the potential of galaxy we require to calculate the off-axis solution that involves special functions or in this case Elliptic Integrals.
  
-The system i am working on is given by the figure below. (figure 1 figure 2 )A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r . (description to be asked)
+The system i am working on is given by the figure below. (figure 1 figure 2 )A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r as described in Figure (2.4), the 
 
 \begin{figure}[!tbp] 
 \centering
@@ -227,6 +227,8 @@ The system i am working on is given by the figure below. (figure 1 figure 2 )A r
 \caption{Figure B}
 \end{minipage}
 \end{figure}
+
+From Figure (2.5), 
 
 \begin{center}
 $ \vec{r} = r.\hat{i} $
@@ -380,7 +382,8 @@ The final expression for Gravitational Force is:
 
 \end{center}
 
-\subsubsection{Function Definition for Calculation of Force}
+
+\subsection{Function Definition for Calculation of Force}
 \begin{verbatim}
 def q(r,R) :
 
@@ -423,8 +426,24 @@ def F(ms,M,R,r):
 \caption{force on a single ring }
 \end{figure}
 
-\subsection{Calculation for Velocity }
-(mathematical)
+\section{Calculation for Velocity }
+Centripetal force is known to be,
+
+\begin{center}
+\begin{equation}
+\vec{F_{c} = \frac{m v^2 }{r}}
+\end{equation}
+
+\begin{equation}
+\vec{F}_{r} = - GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\sqrt{\mu}) (1 - \mu))- E (\sqrt{\mu}) (2 R - \mu (r + R))
+\end{equation}
+
+\begin{equation}
+v = \sqrt{\frac{GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\sqrt{\mu}) (1 - \mu))- E (\sqrt{\mu}) (2 R - \mu (r + R))}{r}}
+\end{equation}
+
+\end{center}
+
 \subsubsection{Function Definition for Velocity}
 \begin{verbatim}
  def v(self, rs, v0, m0):
@@ -449,4 +468,30 @@ def F(ms,M,R,r):
 
         return vs
 \end{verbatim}
+
+\subsection{Data from Histogram}
+To calculate force, we require information about the masses of the rings. For that purpose, we extracted data from the Histogram of masses plotted as a function of normalized intensity. In astronomy, we have direct relation between the Luminosity and Masses of a celestial object, i.e. 
+
+\begin{equation}
+\frac{L}{L_{\odot}} = (\frac{M}{M_{\odot}})^4 
+\end{equation}
+
+So by saving the values of luminosity from the same file, we used in section 2.2.2 , and convert it into mass using the equation above. 
+\begin{verbatim}
+   Mass =[] #mass of the ring
+    Rad=[]
+
+    with open ('histdata.csv', 'r') as f:
+        for row in f:
+            values= row.split(',')
+
+            Rad.append(float(values[0])) #saves values of radius               from data file in empty list.
+            Mass.append(float(values[1])) #saves the value of masses in empty list 
+\end{verbatim}
+
+\subsection{Optimization of Velocity and Mass}
+The rotation curve obtained from the data, that was calculated using Image Analysis as explained in section 2.2.2
+
+
+
 
