@@ -209,13 +209,53 @@ def main():
 
 \section{Calculation of Force}
 
-According to Newton's second law, force is directly proportional to acceleration keeping mass constant. For the calculation of force on the objects inside the galaxy, we consider it to be a set of concentric rings. The histogram from the above section gives us the mass ditribution of the galaxy as moving through the radius. To find the force on a mass inside and outside a specific ring, Elliptic Integrals are used. 
+According to Newton's second law, force is directly proportional to acceleration keeping mass constant. For the calculation of force on the objects inside the galaxy, we consider it to be a set of concentric rings. The histogram from the above section gives us the mass ditribution of the galaxy as moving through the radius. To find the force on a mass inside and outside a specific ring, let us consider the galaxy to be a collection of concentric rings. The force on a particle at radius 'r' will be the commulative effect of force due to the rings before and after the radius 'r'.
 
-Let us consider the problem of finding the Gravitational potential in all space produced by a ring of mass M. In most analytical approaches to problem, solution is found only along the symmetry axis of the ring, where the integrals are expressed in terms of elementry functions. To solve for the potential of galaxy we require to calculate the off-axis solution that involves special functions. 
+Let us consider the problem of finding the Gravitational potential in all space produced by a ring of mass M. In most analytical approaches to problem, solution is found only along the symmetry axis of the ring, where the integrals are expressed in terms of elementry functions. To solve for the potential of galaxy we require to calculate the off-axis solution that involves special functions or in this case Elliptic Integrals.
  
 The system i am working on is given by the figure below. A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r .(description to be asked)
 
-(mathematical)
+\begin{figure}[!tbp]
+\centering
+\begin{minipage}[b]{0.4\textwidth}[h]
+\includegraphics[width=\textwidth]{fig2}
+\caption{Figure A}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.4\textwidth}[h]
+\includegraphics[width=\textwidth]{fig1}
+\caption{Figure B}
+\end{minipage}
+\end{figure}
+
+$ \vec{r} = r.\hat{i} $
+
+$ \vec{R} = R(cos \theta \hat{i} + sin \theta \hat{j} ) $
+
+$ \vec{p} = \vec{R}-\vec{r} $
+
+$ = (R cos \theta-r) \hat{i} + R sin \theta \hat{j} $
+
+
+$ \vert \vec{p}\vert = \sqrt{(R cos \theta - r)^{2} + (R sin \theta )^{2} }$
+
+$ d{\Phi}= \frac{GmdM}{\vert (\vec{p})\vert} $
+
+$ \Phi = \int {d{\Phi}} $
+
+$ d M = \lambda R d \theta  $
+
+$ \Phi= \frac{GMmR}{2\pi R} \int_{0}^{2\pi} \frac {d \theta } {\vert \vec{p} \vert^\frac{1}{2}}$
+
+$\Phi= \frac{GMm}{2\pi} \int_{0}^{2\pi}  
+\frac{d{\theta}}{\sqrt{R^2 - 2 R \cos \theta + r^2}}$
+
+$ d \theta = 2 d \beta $,
+$ \theta = \pi - 2 \beta $,
+$ \beta = \frac{\pi - \theta}{2} $
+
+$ \Phi (\vec{r}) = \frac{GMm}{ \pi} \int_{0}^{\pi}  \frac{d \beta }{\sqrt{r^2 + R^2 +2 R r (1 - 2 \sin^2 \beta )}}  $
+
 
 \begin{figure}[h]
 \centering
@@ -263,3 +303,27 @@ def F(ms,M,R,r):
 \subsection{Calculation for Velocity }
 (mathematical)
 \subsubsection{Function Definition for Velocity}
+\begin{verbatim}
+ def v(self, rs, v0, m0):
+
+        vs=[]
+
+        self.Mass[0] = m0
+
+        for r in rs:
+
+            T=0
+
+            for i in range(len(self.Rad)):
+                R= self.Rad[i]
+                M= self.Mass[i]
+                if abs(R-r) > 0.5:
+                    lF = F(ms,M,R,r)
+                    T= T+lF
+
+            v = v0 * (abs(T*r))**0.5
+            vs.append(v)
+
+        return vs
+\end{verbatim}
+
