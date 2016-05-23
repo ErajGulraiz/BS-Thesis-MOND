@@ -1,4 +1,6 @@
-  \chapter{Modified Newtonian Dynamics (MOND) }
+  \chapter{Theoretical/Computational work}
+  
+\section{Modified Newtonian Dynamics (MOND)}
 
 MOND is an algorithm that allows us the calculations of distribution of the effective gravitational force in astronomical objects from the distribution of baryonic matter with one additional fundamental parameter that has the dimensions od acceleration. This  is done by the determination of rotation curves of disk galaxies, and relating it with normal keplerian motion of the galaxies \cite{dm_2}.
 
@@ -24,7 +26,7 @@ the above expression allows us to calculate the MOND acceleration provided Newto
   MOND has been tested successfully on spiral galaxies, so for this research we chose the nearest spiral galaxy i.e. Andromeda Galaxy. 
 
 \subsection{Andromeda Galaxy}
-  Andromeda, M31 or NGC 224 is the nearest spiral galaxy to Milky Way.  (still to work)
+  Andromeda, M31 or NGC 224 is the nearest spiral galaxy to Milky Way, located 744 kpc away. It is far enough to give us convenient global view, while close enough that we can take spectra of individual stars. Its disk is highly inclined, enabling us to view teh inner parts of the spheroid by studying the regions near the minor axis. 
 
 \subsection{Distance to the Galaxy}
 
@@ -75,12 +77,7 @@ These binary systems give the best estimates of distances. this system of binary
 
 \section*{Explanation of Light Curve}
 
-The light curve is plotted as a consequence of the following movements of the stars in binary system.
-
-\begin{itemize}
-\item
-If the stars are separated, we get lighy from both stars. Total amount of light will be indicated by the brightness on the brightness vs. time scale.
-The binary system works in the manner, explained by the figure $2.2$ 
+ The eclipsing movement of the stars in different phases gives the light curve. The binary system works in the manner, explained by the figure $2.2$ 
 \cite{sys}
 \begin{figure} [h]
 \centering
@@ -88,11 +85,11 @@ The binary system works in the manner, explained by the figure $2.2$
 \caption{Eclipsing Binary System}
 \end{figure}
 
-\end{itemize}
-
 \section{Computational Work}
-The verification of Modiefied Newtonian Dynamics depends upon the Rotation Curve of the specific galaxy. The rotation curve gives us a relation between the rotational velocity and the distance of the astronomical object from teh centre. To gain the required result, I chose Andromeda Galaxy. Andromeda Galaxy is the nearest of our neighbours and its is a massive galaxy. To plot its rotation curve I was required to calculate the distances of the astronomical objects that comprise this galaxy and the mass distribution of the galaxy. Keeping the constraints of unavailability of any telescope in mind, i had to chose the technique of Image Analysis to relate the brightness to the mass distribution of the galaxy.
+The verification of Modified Newtonian Dynamics depends upon the Rotation Curve of the specific galaxy. The rotation curve gives us a relation between the rotational velocity and the distance of the astronomical object from the centre. To gain the required result, I chose Andromeda Galaxy. Andromeda Galaxy is the nearest of our neighbours and its is a massive galaxy. To plot its rotation curve I was required to calculate the distances of the astronomical objects that comprise this galaxy and the mass distribution of the galaxy. Keeping the constraints of unavailability of any telescope in mind, i had to chose the technique of Image Analysis to relate the brightness to the mass distribution of the galaxy, and calculate the distances of pixels, considering each pixel of certain intensity to be a n astronomical object.
+
 \subsection{Image Analysis of M31}
+
 The image analysis is done by different techniques. It basically allows us to extract meaningful information from a digital image. There are different techniques that could be used for image analysis. Different programming languages are used for image analysis. I used Python language for this purpose. Python is a precise coding language, that allows us to write longer codes in a few lines.
 
 The purpose of image analysis was to relate the luminous mass by using luminosity profile to the distance of each pixel from the centre. The following program was used for the whole process. The image used is just an image of a quadrant of the galaxy, and further calculations are done on the basis of an assumption of circular symmetry of the galaxy. Following is the image released by Hubble Telescope Images in $2015$ and is used for the analysis.
@@ -138,7 +135,7 @@ Output:
 
 \item \textbf{Intensity Calculation for Each Pixel}
 
-The Intensity of each pixel is required to estimate the mass of each astronomiacal object in the galaxy, as intensity is directly proportional to the energy of the celestial object [1234].The image I used was an RGB image of the galaxy, to calculate the intensity of each pixel I had to convert it first into grayscale.This is done by fetching the RGB values of each pixel and taking square root of their squares divided by $3$. The pixel values are better to be normalized to get the results ranging from $0$ to $1$. The following part of the program explains this computation in a better way.
+The Intensity of each pixel is required to estimate the mass of each astronomiacal object in the galaxy, as intensity is directly proportional to the energy of the celestial object [1234].The image I used, was an RGB image of the galaxy, to calculate the intensity of each pixel I had to convert it first into grayscale.This is done by fetching the RGB values of each pixel and taking square root of their squares divided by $3$. The pixel values are better to be normalized to get the results ranging from $0$ to $1$. The following part of the program explains this computation in a better way.
 
 \begin{verbatim}
 
@@ -218,16 +215,16 @@ According to Newton's second law, force is directly proportional to acceleration
 
 Let us consider the problem of finding the Gravitational potential in all space produced by a ring of mass M. In most analytical approaches to problem, solution is found only along the symmetry axis of the ring, where the integrals are expressed in terms of elementry functions. To solve for the potential of galaxy we require to calculate the off-axis solution that involves special functions or in this case Elliptic Integrals.
  
-The system i am working on is given by the figure below. (figure 1 figure 2 )A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r as described in Figure (2.4), the 
+The system i am working on is given by the figure below, as in Figure 2.5.A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r as described in Figure 2.6, the 
 
 \begin{figure}[!tbp] 
 \centering
-\begin{minipage}[b]{0.4\textwidth}
+\begin{minipage}[b]{0.3\textwidth}
 \includegraphics[width=\textwidth]{fig2}
 \caption{Figure A}
 \end{minipage}
 \hfill
-\begin{minipage}[b]{0.4\textwidth}
+\begin{minipage}[b]{0.3\textwidth}
 \includegraphics[width=\textwidth]{fig1}
 \caption{Figure B}
 \end{minipage}
@@ -394,7 +391,7 @@ To calculate force, we require information about the masses of the rings. For th
 \frac{L}{L_{\odot}} = (\frac{M}{M_{\odot}})^4 
 \end{equation}
 
-So by saving the values of luminosity from the same file, we used in section 2.2.2 , and convert it into mass using the equation above. 
+So by saving the values of luminosity from the same file, we used in section 2.2.2 , and using the equation (2.24) we get the values of masses for each body.  
 
 \subsection{Function Definition for Data Extraction from Histogram}
 \begin{verbatim}
@@ -504,13 +501,11 @@ v = \sqrt{\frac{GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\
 
         return vs
 \end{verbatim}
-\section{chap 3}
-\subsection{Observed Rotation Curve}
 
 
-The survey of Andromeda Galaxy according to [15], gives us the rotation curve measured out to $38$ kpc, showing a nuclear peak at $340$ km s$^{-1}$ , a dip at $202$ km s$^{-1}$ around $4$ kpc, two distinct flat parts at $264$ km s$^{-1}$  and $230$ km s$^{-1}$ and an increase to $275$  km s $^{-1}$ in the outermost regions.
- 
- Regenerating the curve, using the following program,  
+\section{Observed Rotation Curve}
+
+The data used in this program is precalculated data of radius in kpc and rotational velocities in $kms^{-1}$ for Andromeda Galaxy.\cite{observed} 
 \begin{verbatim}
 
 x= []
@@ -519,14 +514,14 @@ y= []
 with open ('rd.txt','r') as f:
     for row in f:
 
-        x.append((row))
+        x.append((row)) #appends the data in empty list for distances
 
 
 
 with open ('vrot.txt', 'r') as f1:
     for row1 in f1:
 
-        y.append((row1))
+        y.append((row1)) #appends the data in empty list for rotational velocities.
 
 
 pylab.ylim([0,400])
@@ -537,16 +532,8 @@ plt.scatter(x,y)
 
 \end{verbatim}
 
-The following curve is obtained, as the observed rotation curve of M31.
-
-\begin{figure} [h]
-\centering
-\includegraphics[scale=0.5]{rotcurve}
-\caption{Observed Rotation Curve for Andromeda Galaxy}
-\end{figure}
-\subsection{Optimization of Velocity and Mass}
-The rotation curve obtained from the data, that was calculated using Image Analysis as explained in section 2.2.1  
-
+\section{Optimization of Velocity and Mass}
+The velocities and masses according to the calculated data were not able to regenerate the rotation curve as required, so curve fitting was reqquired. In the program below, we optimize the calculated curve according to the observed and get the values of parameters as $v_{0}$ and $m_{0}$
 \begin{verbatim}
 a,b = scipy.optimize.curve_fit(fit.v, R, V)
     print (a)
@@ -564,40 +551,6 @@ a,b = scipy.optimize.curve_fit(fit.v, R, V)
     pv = plt.scatter(R,vo , color='y', label = 'v0')
     plt.plot(R,vo)
 \end{verbatim}
-
-\begin{figure} [h]
-\centering
-\includegraphics[scale=0.5]{best}
-\caption{Rotation Curve for Andromeda Galaxy}
-\end{figure}
-
-\subsection{Need for Optimization}
-
-The rotation curve obtained by using the precalculated data, is to be achieved by the data calculated by image analysis. When we plot the curve from our calculated data, it gives us an irregular pattern, which demands that there must be some fitting done for it. After which we optimize the graph to a certain velocity and the optimization function gives us the value of velocity. From Figure $2.8$ we find the curve described as '\textit{optimized for velocity'} \textbf{$v_{0}$} is in some accordance with the observed rotation curve, but it still requires some modification in the region near the origin. For that purpose, we optimize the curve for masses also, and similarly, the funtion gives us optimized value of mass \textbf{$m_{0}$}. 
-
-The values of $v_{0}$ and $m_{0}$ are found out to be;
-
-$v_{0} = 55802.2453 $         
-
-$m_{0} = 1473818.3329 $
-
-with standard deviations of ;
-
-$\triangle v =  4.67802922e+05$
-
-$\triangle m = 7.79892330e+09 $
-
-The units for these values are not defined, as they could be explained by any multiplicative factor in the units of velocity and masses. 
-
-\section{Chapter 4} 
-
-
-Summary and Conclusions
-
-Andromeda Galaxy is our nearest neighbour, a spiral galaxy just like Milky Way, located at about 744 kpc. This thesis provides a technique to calculate astronomical data, and use it to reproduce the rotation curve of Andromeda Galaxy. 
-
-
-
 
 
 
