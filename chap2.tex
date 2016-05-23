@@ -2,31 +2,31 @@
   
 \section{Modified Newtonian Dynamics (MOND)}
 
-MOND is an algorithm that allows us the calculations of distribution of the effective gravitational force in astronomical objects from the distribution of baryonic matter with one additional fundamental parameter that has the dimensions od acceleration. This  is done by the determination of rotation curves of disk galaxies, and relating it with normal keplerian motion of the galaxies \cite{dm_2}.
+MOND is an algorithm that allows us to calculate the distribution of the effective gravitational force in astronomical objects from the distribution of baryonic matter by introducing one additional fundamental parameter that has the dimensions of acceleration. This  is done by the determining the rotation curves of disk and spiral galaxies and relating it with normal keplerian motion. \cite{dm_2}.
 
- It is a numeric way of calculating the missing mass or the factor that is causing a descrepancy in mass. It relates MOND acceleration 'a' to Newtonian acceleration $a_{N}$ by the following formula \begin{equation}
- a_{N}= a\mu(\frac{a}{a_{N}})
+ It is a numeric way of calculating  the missing factor (acceleration parameter) that is causing the discrepancy in the rotation curves. It relates MOND acceleration `$a$' to Newtonian acceleration $a_{N}$ using the following formula \begin{equation}
+ a_{N}= a\,\mu(\frac{a}{a_{0}})
 \end{equation}
-where $a_{N} = 1.2×10-8  cms-2$  is a constant of physics.
-The interpolation function $\mu (a/a0)$ shows asymptotic behaviour $\mu=1$ when $a>> a0$,  which retrieves the Newtonian expression in strong field regime. And for $a << a0$ with these assumptions gives us the following expression,
+where $a_{0} = 1.2 \times 10^{-8} cm s^{-2}$  is a constant of physics.
+The interpolation function $\mu (a/a_0)$ shows asymptotic behaviour $\mu=1$ when $a>> a_0$,  which reduces to the Newtonian expression in the strong field regime. For $a << a0$  these assumptions give us the following expression
 \begin{equation}
 a= \sqrt{a_{N}a_{0}}= \frac{\sqrt{GMa_{0}}}{r}
 \end{equation}
-different functions are used for $\mu$, currently most used function is :
+Different functions can be used for $\mu$. Currently the most used function is
 \begin{equation}
-(\frac{a}{a_{0}}) = \frac{\frac{a}{a_{0}}}{\sqrt{1+(\frac{a}{a_{0}})^2}•}
+\mu (\frac{a}{a_{0}}) = \frac{\displaystyle \frac{a}{a_{0}}}{\sqrt{1+(\displaystyle \frac{a}{a_{0}})^2}}
 \end{equation}
-it works well for galactic rotation and solving for a, it gives
+It works well for galactic rotation and solving for a, it gives
 \begin{equation}
-a= a_{N}(\frac{1}{2}+\frac{1}{2\sqrt{1+(\frac{2a_{0}}{a_{N}})^2}})^\frac{1}{2}
+a= a_{N}(\frac{1}{2}+\frac{1}{2\sqrt{1+(\displaystyle \frac{2a_{0}}{a_{N}})^2}})^\frac{1}{2}
 \end{equation}
-the above expression allows us to calculate the MOND acceleration provided Newtonian gravity is known.
+The above expression allows us to calculate the MOND acceleration provided Newtonian gravity is known.
 
 \section{Area of Study}
   MOND has been tested successfully on spiral galaxies, so for this research we chose the nearest spiral galaxy i.e. Andromeda Galaxy. 
 
 \subsection{Andromeda Galaxy}
-  Andromeda, M31 or NGC 224 is the nearest spiral galaxy to Milky Way, located 744 kpc away. It is far enough to give us convenient global view, while close enough that we can take spectra of individual stars. Its disk is highly inclined, enabling us to view teh inner parts of the spheroid by studying the regions near the minor axis. 
+  Andromeda, M31 or NGC 224, is the nearest spiral galaxy to the Milky Way, located 744 kpc away. It is far enough to give us a convenient global view, while close enough that we can take spectra of individual stars. Its disk is highly inclined, enabling us to view the inner parts of the spheroid by studying the regions near the minor axis. 
 
 \subsection{Distance to the Galaxy}
 
