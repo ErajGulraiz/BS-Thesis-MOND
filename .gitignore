@@ -14,3 +14,6 @@ thesis.pdf
 *.bcf
 *.blg
 *.run.xml
+
+*.bak
+*.patch
