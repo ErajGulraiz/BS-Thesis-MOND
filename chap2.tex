@@ -1,6 +1,6 @@
-  \chapter{Modified Newtonian Dynamics (MOND) [6]}
+  \chapter{Modified Newtonian Dynamics (MOND) }
 
-MOND is an algorithm that allows us the calculations of distribution of the effective gravitational force in astronomical objects from the distribution of baryonic matter with one additional fundamental parameter that has the dimensions od acceleration. This  is done by the determination of rotation curves of disk galaxies, and relating it with normal keplerian motion of the galaxies.
+MOND is an algorithm that allows us the calculations of distribution of the effective gravitational force in astronomical objects from the distribution of baryonic matter with one additional fundamental parameter that has the dimensions od acceleration. This  is done by the determination of rotation curves of disk galaxies, and relating it with normal keplerian motion of the galaxies \cite{dm_2}.
 
  It is a numeric way of calculating the missing mass or the factor that is causing a descrepancy in mass. It relates MOND acceleration 'a' to Newtonian acceleration $a_{N}$ by the following formula \begin{equation}
  a_{N}= a\mu(\frac{a}{a_{N}})
@@ -21,7 +21,7 @@ a= a_{N}(\frac{1}{2}+\frac{1}{2\sqrt{1+(\frac{2a_{0}}{a_{N}})^2}})^\frac{1}{2}
 the above expression allows us to calculate the MOND acceleration provided Newtonian gravity is known.
 
 \section{Area of Study}
-  MOND has been tested successfully on spiral galaxies, so for this research we choose our nearest spiral galaxy i.e. Andromeda Galaxy.(work it out)
+  MOND has been tested successfully on spiral galaxies, so for this research we chose the nearest spiral galaxy i.e. Andromeda Galaxy. 
 
 \subsection{Andromeda Galaxy}
   Andromeda, M31 or NGC 224 is the nearest spiral galaxy to Milky Way.  (still to work)
@@ -31,16 +31,16 @@ the above expression allows us to calculate the MOND acceleration provided Newto
 The stars and galaxies are far apart from Earth, these distances can vary from a few parsecs to kilo and mega parsecs. It is important to calculate the distances in order to determine further properties of these objects. There are different techniques to calculate distances, that astronomers have developed.
 A few of them are listed below:
 
-\subsection{Standard Candles[12]}
- Cepheid variable stars are used to as cosmic distance ladders to measure distances. Cepheid variable stars are a part of star cycle, formed when a giant red star is about to die. These stars expand and contract, changing their brightness from lighter to dimmer.  They change their brightness in regular intervals of 1 to 70 days. And the relation between the time interval and apparent magnitude gives us distances by the following equation:
+\subsection{Standard Candles}
+ Cepheid variable stars are used to as cosmic distance ladders to measure distances. Cepheid variable stars are a part of star cycle, formed when a giant red star is about to die. These stars expand and contract, changing their brightness from lighter to dimmer \cite{stanc}.  They change their brightness in regular intervals of 1 to 70 days. And the relation between the time interval and apparent magnitude gives us distances by the following equation:
  \begin{equation}
  d= 10^{\frac{(m-M+5)}{5}}
  \end{equation}
 where \textbf{m} is the apparent magnitude and \textbf{M} is the absolute magnitude.
 
-\subsection*{Binary Stars [13]}
+\subsection*{Binary Stars }
 
-Binary stars system is the one which have two stars orbiting around a center of mass, hence they are gravitationally bound to each other. Almost \textbf{85} percent of the stars are binary in nature. Gravity hold the system together, both stars orbit their centre of mass (CM). The orbital periods and distances of these system vary enormously.If the stars are the same masses, they are equally distant from CM, otherwise more massive star is closer to the CM. Binary stars are difficult to observe directly, because systems are too distant to resolve each star. Astronomers use their light curve ; how apparent brightness changes with time, to calculate the distances. Binary stars are classified to following categories.
+\cite{bin}Binary stars system is the one which have two stars orbiting around a center of mass, hence they are gravitationally bound to each other. Almost \textbf{85} percent of the stars are binary in nature. Gravity hold the system together, both stars orbit their centre of mass (CM). The orbital periods and distances of these system vary enormously.If the stars are the same masses, they are equally distant from CM, otherwise more massive star is closer to the CM. Binary stars are difficult to observe directly, because systems are too distant to resolve each star.  Astronomers use their light curve ; how apparent brightness changes with time, to calculate the distances. Binary stars are classified to following categories.
 
 \begin{enumerate}
 
@@ -56,17 +56,16 @@ Most binary systems are too far to be resolved by telescopes, so they are detect
 \item \textbf{Astrometric Binaries}
 
 The Binary stars sometimes are too far or two close. Sometimes it is hard to distinguish between the two stars in the system, such systems of binary stars are known as Astrometric binary stars \cite{astrometric_binaries}.
-% [http://csep10.phys.utk.edu/astr162/lect/binaries/astrometric.html]
+
 
 \item \textbf{Eclipsing Binaries}
-% [http://www.physics.sfasu.edu/astro/ebstar/ebstar.html]
 
 The type of variable stars, that appear as single point of light , but due to brightness variation and spectroscopic observations we say they are two stars in close orbit around each other and seem like they eclipse each other \cite{eclipsing_binaries}.
 
-% [http://www.physics.sfasu.edu/astro/ebstar/ebstar.html]
 
-These binary systems give the best estimates of distances. this system of binary stars have two luminous stars. The graph of brightness versus time is known as Light curve of eclipsing binaries. Time is expressed as phase, and the unit of phase is orbital period. The brightness is measured as magnitude of the stars.
-\begin{figure}
+These binary systems give the best estimates of distances. this system of binary stars have two luminous stars. The graph of brightness versus time is known as Light curve of eclipsing binaries. Time is expressed as phase, and the unit of phase is orbital period. The brightness is measured as magnitude of the stars \cite{eclipsing_binaries}.
+
+\begin{figure} [h]
 \centering
 \includegraphics[scale=0.5]{LC}
 \caption{Photometry of Beta Lyrae in 1992-1993}
@@ -81,7 +80,13 @@ The light curve is plotted as a consequence of the following movements of the st
 \begin{itemize}
 \item
 If the stars are separated, we get lighy from both stars. Total amount of light will be indicated by the brightness on the brightness vs. time scale.
-do it at home .. create figures and add phases of light curve. pages 5,6
+The binary system works in the manner, explained by the figure $2.2$ 
+\cite{sys}
+\begin{figure} [h]
+\centering
+\includegraphics[scale=0.5]{Light}
+\caption{Eclipsing Binary System}
+\end{figure}
 
 \end{itemize}
 
@@ -499,8 +504,8 @@ v = \sqrt{\frac{GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\
 
         return vs
 \end{verbatim}
-
-\section{Observed Rotation Curve}
+\section{chap 3}
+\subsection{Observed Rotation Curve}
 
 
 The survey of Andromeda Galaxy according to [15], gives us the rotation curve measured out to $38$ kpc, showing a nuclear peak at $340$ km s$^{-1}$ , a dip at $202$ km s$^{-1}$ around $4$ kpc, two distinct flat parts at $264$ km s$^{-1}$  and $230$ km s$^{-1}$ and an increase to $275$  km s $^{-1}$ in the outermost regions.
@@ -539,7 +544,7 @@ The following curve is obtained, as the observed rotation curve of M31.
 \includegraphics[scale=0.5]{rotcurve}
 \caption{Observed Rotation Curve for Andromeda Galaxy}
 \end{figure}
-\section{Optimization of Velocity and Mass}
+\subsection{Optimization of Velocity and Mass}
 The rotation curve obtained from the data, that was calculated using Image Analysis as explained in section 2.2.1  
 
 \begin{verbatim}
@@ -566,7 +571,30 @@ a,b = scipy.optimize.curve_fit(fit.v, R, V)
 \caption{Rotation Curve for Andromeda Galaxy}
 \end{figure}
 
-\section{Need for Optimization}
+\subsection{Need for Optimization}
+
+The rotation curve obtained by using the precalculated data, is to be achieved by the data calculated by image analysis. When we plot the curve from our calculated data, it gives us an irregular pattern, which demands that there must be some fitting done for it. After which we optimize the graph to a certain velocity and the optimization function gives us the value of velocity. From Figure $2.8$ we find the curve described as '\textit{optimized for velocity'} \textbf{$v_{0}$} is in some accordance with the observed rotation curve, but it still requires some modification in the region near the origin. For that purpose, we optimize the curve for masses also, and similarly, the funtion gives us optimized value of mass \textbf{$m_{0}$}. 
+
+The values of $v_{0}$ and $m_{0}$ are found out to be;
+
+$v_{0} = 55802.2453 $         
+
+$m_{0} = 1473818.3329 $
+
+with standard deviations of ;
+
+$\triangle v =  4.67802922e+05$
+
+$\triangle m = 7.79892330e+09 $
+
+The units for these values are not defined, as they could be explained by any multiplicative factor in the units of velocity and masses. 
+
+\section{Chapter 4} 
+
+
+Summary and Conclusions
+
+Andromeda Galaxy is our nearest neighbour, a spiral galaxy just like Milky Way, located at about 744 kpc. This thesis provides a technique to calculate astronomical data, and use it to reproduce the rotation curve of Andromeda Galaxy. 
 
 
 
