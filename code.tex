@@ -1,6 +1,7 @@
 \chapter{Code}
 \section{Calculation of Distances and Intensity}
-\begin{verbatim}
+
+\begin{Verbatim}[fontsize=\small,baselinestretch=0.9]
 import matplotlib.pyplot as plt
 import csv
 import matplotlib.mlab as mlab
@@ -25,7 +26,6 @@ def main():
     (w, h,d) = andro.shape
 
 
-
     with open('data.csv', 'w') as fout:
 
         for x in range(w):
@@ -35,12 +35,7 @@ def main():
                 i = calc_gs_intensity( andro[x,y] )
                 m= i**0.25
 
-                print (r,i,m)
-
-
                 fout.write(str(r) + "," + str(i)+ "," + str(m) + "\n")
-
-
 
 
 
@@ -49,7 +44,6 @@ def main():
 denom= math.sqrt(3)*255
 
 def calc_gs_intensity(i):
-
 
     R = float(i[0])
     G = float(i[1])
@@ -68,10 +62,10 @@ def calc_distance(x0,y0,x,y):
 
 if __name__ == '__main__':
     main()
-\end{verbatim}
+\end{Verbatim}
 
 \section{Histogram for 400 Bins}
-\begin{verbatim}
+\begin{Verbatim}[fontsize=\small,baselinestretch=0.9]
 import csv
 import matplotlib.pyplot as plt
 
@@ -106,14 +100,14 @@ def main():
 
 
 
-
 if __name__ == '__main__':
 
     main()
-\end{verbatim}
+\end{Verbatim}
+
 
 \section{Observed Rotation Curve}
-\begin{verbatim}
+\begin{Verbatim}[fontsize=\small,baselinestretch=0.9]
 import numpy as np
 import matplotlib.pyplot as plt
 import pylab
@@ -148,10 +142,10 @@ plt.ylabel('rotational velocity km/s')
 plt.show()
 savefig('plot.jpg')
 
-\end{verbatim}
+\end{Verbatim}
 
 \section{Force and Velocity Calculation and Optimization}
-\begin{verbatim}
+\begin{Verbatim}[fontsize=\small,baselinestretch=0.9]
 import csv
 import numpy as np
 import scipy
@@ -461,8 +455,4 @@ class Fit:
 
 if __name__ == '__main__':
     main()
-
-
-
-
-\end{verbatim}
+\end{Verbatim}
