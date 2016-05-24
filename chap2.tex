@@ -30,54 +30,56 @@ The above expression allows us to calculate the MOND acceleration provided Newto
 
 \subsection{Distance to the Galaxy}
 
-The stars and galaxies are far apart from Earth, these distances can vary from a few parsecs to kilo and mega parsecs. It is important to calculate the distances in order to determine further properties of these objects. There are different techniques to calculate distances, that astronomers have developed.
+The stars and galaxies are at a considerable distance from Earth, from a few parsecs to several kilo and even mega parsecs. It is essential to calculate the distances in order to determine further properties of these objects. There are different techniques for calculating distances that astronomers have developed.
 A few of them are listed below:
 
-\subsection{Standard Candles}
- Cepheid variable stars are used to as cosmic distance ladders to measure distances. Cepheid variable stars are a part of star cycle, formed when a giant red star is about to die. These stars expand and contract, changing their brightness from lighter to dimmer \cite{stanc}.  They change their brightness in regular intervals of 1 to 70 days. And the relation between the time interval and apparent magnitude gives us distances by the following equation:
+\subsubsection*{Standard Candles}
+ Cepheid variable stars are used as cosmic distance ladders to measure distances. Cepheid variable stars are a part of the star cycle formed when a giant red star is about to die. These stars expand and contract, changing their brightness from brighter to dimmer \cite{stanc}.  They change their brightness in regular intervals of 1 to 70 days and the relation between the time interval and apparent magnitude gives us distances via the following equation:
  \begin{equation}
- d= 10^{\frac{(m-M+5)}{5}}
+ d= 10^{\displaystyle \frac{(m-M+5)}{5}}
  \end{equation}
 where \textbf{m} is the apparent magnitude and \textbf{M} is the absolute magnitude.
 
-\subsection*{Binary Stars }
+\subsubsection*{Binary Stars }
 
-\cite{bin}Binary stars system is the one which have two stars orbiting around a center of mass, hence they are gravitationally bound to each other. Almost \textbf{85} percent of the stars are binary in nature. Gravity hold the system together, both stars orbit their centre of mass (CM). The orbital periods and distances of these system vary enormously.If the stars are the same masses, they are equally distant from CM, otherwise more massive star is closer to the CM. Binary stars are difficult to observe directly, because systems are too distant to resolve each star.  Astronomers use their light curve ; how apparent brightness changes with time, to calculate the distances. Binary stars are classified to following categories.
+A binary star system consists of two stars  gravitationally bound to each other orbitting around their common centre of mass. Almost \textbf{85} percent of stars are part of a binary star system \cite{bin}. The orbital periods and relative distances of these systems vary enormously. If the stars have the same masses they are equally distant from the CM, otherwise the more massive star is closer to the CM.
+
+Binary stars are difficult to observe directly because the systems are too distant to resolve each star. Astronomers use their light curve, how apparent brightness changes with time, to calculate the distances. Binary stars are classified into the following categories.
 
 \begin{enumerate}
 
 \item\textbf{Visual Binaries}
 
-Some binary systems are close to Earth and have a significantly large distances between each    other, so they can be visualized individually in a telescope. These systems are known as visual binaries. \cite{sys_1}
+Some binary systems are close to the Earth and have a significantly large distance between eachother so they can be observed individually in a telescope \cite{sys_1}.
 
-\item {Spectroscopic Binaries }
+\item \textbf{ Spectroscopic Binaries }
 
-Most binary systems are too far to be resolved by telescopes, so they are detected by the Doppler Shifts in their spectral lines. Such systems are spectroscopic binary system. The two stars appear to be moving towards and away from us. So the one moving towards us is blue shifted while the one moving away is red shifted.
+Most binary systems are too far to be resolved by telescopes so they are detected by the Doppler shifts in their spectral lines. The two stars appear to be moving alternatively towards and away from us so the one moving towards us is blue shifted while the one moving away is red shifted.
 
 
 \item \textbf{Astrometric Binaries}
 
-The Binary stars sometimes are too far or two close. Sometimes it is hard to distinguish between the two stars in the system, such systems of binary stars are known as Astrometric binary stars \cite{astrometric_binaries}.
+The Binary stars sometimes are too far or too close to eachother making it hard to distinguish between the them in the system \cite{astrometric_binaries}.
 
 
 \item \textbf{Eclipsing Binaries}
 
-The type of variable stars, that appear as single point of light , but due to brightness variation and spectroscopic observations we say they are two stars in close orbit around each other and seem like they eclipse each other \cite{eclipsing_binaries}.
+This type of binary system consists of two luminous stars that appear as a single point of light but due to brightness variation and spectroscopic observations we conclude that they are two stars in close orbit around each other causing them to eclipse each other \cite{eclipsing_binaries}.
 
 
-These binary systems give the best estimates of distances. this system of binary stars have two luminous stars. The graph of brightness versus time is known as Light curve of eclipsing binaries. Time is expressed as phase, and the unit of phase is orbital period. The brightness is measured as magnitude of the stars \cite{eclipsing_binaries}.
+These binary systems give the best estimates of distances. This system of binary stars have two luminous stars. The graph of brightness versus time is known as the light-curve of eclipsing binaries.
 
 \begin{figure} [h]
 \centering
 \includegraphics[scale=0.5]{LC}
-\caption{Photometry of Beta Lyrae in 1992-1993}
+\caption{Photometry of Beta Lyrae in 1992-1993 \cite{eclipsing_binaries}}
 \end{figure}
 
 \end{enumerate}
 
-\section*{Explanation of Light Curve}
+\subsubsection*{Explanation of Light Curve}
 
- The eclipsing movement of the stars in different phases gives the light curve. The binary system works in the manner, explained by the figure $2.2$ 
+ The eclipsing movement of the stars in different phases gives the light-curve. The binary system works in the manner explained in the figure $2.2$ 
 \cite{sys}
 \begin{figure} [h]
 \centering
@@ -86,18 +88,32 @@ These binary systems give the best estimates of distances. this system of binary
 \end{figure}
 
 \section{Computational Work}
-The verification of Modified Newtonian Dynamics depends upon the Rotation Curve of the specific galaxy. The rotation curve gives us a relation between the rotational velocity and the distance of the astronomical object from the centre. To gain the required result, I chose Andromeda Galaxy. Andromeda Galaxy is the nearest of our neighbours and its is a massive galaxy. To plot its rotation curve I was required to calculate the distances of the astronomical objects that comprise this galaxy and the mass distribution of the galaxy. Keeping the constraints of unavailability of any telescope in mind, i had to chose the technique of Image Analysis to relate the brightness to the mass distribution of the galaxy, and calculate the distances of pixels, considering each pixel of certain intensity to be a n astronomical object.
+The verification of Modified Newtonian Dynamics depends upon the rotation curve of the specific galaxy. The rotation curve gives us a relation between the rotational velocity and the distance of the astronomical object from the centre of the galaxy. I chose to study the Andromeda Galaxy, our nearest neighbour. To calculate the rotation curve one needs to calculate the distances of the visible astronomical objects that comprise the galaxy and its mass distribution. Keeping the constraints of unavailability of any telescope in mind I had to work with an existing image of the Andromeda Galaxy and used the technique of Image Analysis.
 
 \subsection{Image Analysis of M31}
 
-The image analysis is done by different techniques. It basically allows us to extract meaningful information from a digital image. There are different techniques that could be used for image analysis. Different programming languages are used for image analysis. I used Python language for this purpose. Python is a precise coding language, that allows us to write longer codes in a few lines.
+Image analysis allows us to extract meaningful information from a digital image. I uchose the Python language for this purpose. Python is a precise coding language that allows us to write complex code in fewer lines.
 
-The purpose of image analysis was to relate the luminous mass by using luminosity profile to the distance of each pixel from the centre. The following program was used for the whole process. The image used is just an image of a quadrant of the galaxy, and further calculations are done on the basis of an assumption of circular symmetry of the galaxy. Following is the image released by Hubble Telescope Images in $2015$ and is used for the analysis.
+ Figure \ref{andromeda_image} is an image of one quadrant of the Andromeda Galaxy released by Hubble Telescope Images in $2015$ which was used for our analysis. It is an 8-bit RGB JPEG image of width 6000 pixel and height 1918 pixels.
+    
 \begin{figure}[h!]
+\label{andromeda_image}
 \centering
 \includegraphics[scale=0.125]{andromeda.jpg}
 \caption{Andromeda Galaxy, M31, NGC 224}
 \end{figure}
+
+We assume that each pixel in the image corresponds to a Main Sequence star whose luminosity is related to its mass by the relation 
+
+\begin{equation}
+\frac{L}{L_{\odot}} = (\frac{M}{M_{\odot}})^4 
+\end{equation}
+
+where $L_{\odot}$ is solar luminosity and $M_{\odot}$ is solar mass.
+
+We further assumed the Andromeda Galaxy to be roughly circular with a cylinderically symmetric mass distribution. This allowed us to model the Andromeda Galaxy as a collection of concentric rings. 
+
+Our task was then to analyze the image and calculate teh mass of these concentric rings. We chose to divide the galaxy into $400$ concentric rings. this was achieved using the following python code.
 
 \subsection{Program for Image Analysis}
 The program was divided into a few parts to create a clear concept of purpose of each part. Following are the parts of the program.
@@ -194,7 +210,7 @@ def main():
         R.append( r )
         I.append( float(row[1]) )
 
-    plt.hist(R, weights=I, bins = 100)
+    plt.hist(R, weights=I, bins = 400)
     plt.xlabel('radius   (pixels)    1kpc = 11.7px  ')
     plt.ylabel('Cummulative Normalized Intensity')
     plt.show()
