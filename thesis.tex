@@ -1,5 +1,6 @@
- \documentclass[a4paper,12pt]{book}
+\documentclass[a4paper,12pt]{book}
 
+\usepackage{amsmath}
 \usepackage{verbatim}
 \usepackage{graphicx}
 
@@ -57,8 +58,10 @@ Thank you!}
     \include{chap2}
     \include{chap3}
     \include{chap4}
-    \include{code}
- 
+
+    \begin{appendices}
+      \include{code}
+    \end{appendices}
 
     \makereferences         % Create the references section
 
