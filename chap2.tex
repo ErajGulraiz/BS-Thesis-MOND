@@ -220,103 +220,86 @@ Let us consider the problem of finding the gravitational potential in all space 
  
 The system I am working on is given by Figure \ref{ring}. A ring of mass M and radius R lies in the x-y plane with its centre at the origin. A mass $m$ is at a distance $r$ as described in Figure \ref{ring}, 
 
-\centering
-\begin{minipage}[b]{0.4\textwidth}
-      \includegraphics[width=\textwidth]{fig2}
-      \captionof{figure}{Ring of Mass}
-      \label{ring}
-\end{minipage}
-\hfill
-\begin{minipage}[b]{0.4\textwidth}
-      \includegraphics[width=\textwidth]{fig1}
-      \captionof{figure}{Vector Diagram}
-      \label{vectordiagram}
-\end{minipage}
+\begin{center}
+   \begin{minipage}[b]{0.4\textwidth}
+         \includegraphics[width=\textwidth]{fig2}
+         \captionof{figure}{Ring of Mass}
+         \label{ring}
+   \end{minipage}
+   \hfill
+   \begin{minipage}[b]{0.4\textwidth}
+         \includegraphics[width=\textwidth]{fig1}
+         \captionof{figure}{Vector Diagram}
+         \label{vectordiagram}
+   \end{minipage}
+\end{center}
 
 From Figure \ref{vectordiagram}, 
-
-\begin{center}
-$ \vec{r} = r.\hat{i} $
-
-$ \vec{R} = R\,(cos \theta \hat{i} + sin \theta \hat{j} ) $
-
-$ \vec{p} = \vec{R}-\vec{r} = (R cos \theta-r) \hat{i} + R sin \theta \hat{j} $
-
-
-$ \vert \vec{p}\vert = \sqrt{(R cos \theta - r)^{2} + (R sin \theta )^{2} }$
+%
+\begin{equation}
+   \begin{gathered}
+      \vec{r} = r.\hat{i}\\
+      \vec{R} = R\,(cos \theta \hat{i} + sin \theta \hat{j} )\\
+      \vec{p} = \vec{R}-\vec{r} = (R cos \theta-r) \hat{i} + R sin \theta \hat{j}\\
+      \vert \vec{p}\vert = \sqrt{(R cos \theta - r)^{2} + (R sin \theta )^{2} }
+   \end{gathered}
+\end{equation}
 
 \vspace{0.5\baselineskip}
 The Gravitational Potential is given by
 \begin{equation}
- d{\Phi}= \frac{GmdM}{\vert \vec{p}\vert} 
+   \begin{gathered}
+      d{\Phi}= \frac{GmdM}{\vert \vec{p}\vert}\\
+      \Phi = \int {d{\Phi}}\\
+      d M = \lambda R d \theta
+   \end{gathered}
 \end{equation}
 
-
-$ \Phi = \int {d{\Phi}} $
-  
-
-$ d M = \lambda R d \theta  $
 \vspace{0.5\baselineskip}
-By substituting Linear Mass Distribution ,
+By substituting in the Linear Mass Distribution
+%
 \begin{equation}
-\Phi= \frac{GMmR}{2\pi R} \int_{0}^{2\pi} \frac {d \theta } {\vert \vec{p} \vert^\frac{1}{2}}
+   \label{phi1}
+   \Phi= \frac{GMmR}{2\pi R} \int_{0}^{2\pi} \frac {d \theta } {\vert \vec{p} \vert^\frac{1}{2}} = \frac{GMm}{2\pi} \int_{0}^{2\pi} \frac{d{\theta}}{\sqrt{R^2 - 2 R r \cos \theta + r^2}}
 \end{equation}
 
+Substituting $d \theta = 2 d \beta$, $\theta = \pi - 2 \beta$, and $\beta = \frac{\pi - \theta}{2}$ equation \eqref{phi1} gives us
 \begin{equation}
-\label{phi1}
-\Phi= \frac{GMm}{2\pi} \int_{0}^{2\pi}  
-\frac{d{\theta}}{\sqrt{R^2 - 2 R r \cos \theta + r^2}}
+   \label{phi2}
+   \Phi (\vec{r}) = \frac{GMm}{ \pi} \int_{0}^{\frac{\pi}{2}}  \frac{d \beta }{\sqrt{r^2 + R^2 +2 R r (1 - 2 \sin^2 \beta )}}  
 \end{equation}
 
-
-Substitution of the following parameters in equation \eqref{phi1} gives us \eqref{phi2}
-
-$ d \theta = 2 d \beta $,
-$ \theta = \pi - 2 \beta $,
-$ \beta = \frac{\pi - \theta}{2} $
-
+Substituting $ q = r^2 + R^2 + 2 r R$ results in 
 \begin{equation}
-\label{phi2}
-\Phi (\vec{r}) = \frac{GMm}{ \pi} \int_{0}^{\frac{\pi}{2}}  \frac{d \beta }{\sqrt{r^2 + R^2 +2 R r (1 - 2 \sin^2 \beta )}}  
-\end{equation}
-
-substituting $ q = r^2 + R^2 + 2 r R$ results in 
-\begin{equation}
-\Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} \int_{0}^{\frac{ \pi}{2}} \frac{d \beta }{\sqrt{1 - \frac{4 r R}{q} \sin^2 \beta}}   
+   \Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} \int_{0}^{\frac{ \pi}{2}} \frac{d \beta }{\sqrt{1 - \frac{4 r R}{q} \sin^2 \beta}}   
 \end{equation}
  
 and then substituting $ k = \sqrt{\frac{4 r R }{q}} $ and $ k^2 = \frac{4 r R}{q} $ results in
 \begin{equation}
-\label{elliptic}
-\Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} \int_{0}^{\frac{ \pi}{2}} \frac{d \beta } {1 - k^2 \sin \beta } 
+   \label{elliptic}
+   \Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} \int_{0}^{\frac{ \pi}{2}} \frac{d \beta } {1 - k^2 \sin \beta } 
 \end{equation}
 
 We know that the equation \eqref{elliptic} is the Elliptic Integral of the First kind,
 \begin{equation}
-\frac{d \beta } {1 - k^2 \sin \beta } = K (k) 
+   \frac{d \beta } {1 - k^2 \sin \beta } = K (k) 
 \end{equation}
  
 Therefore Equation \eqref{elliptic} can be expressed as
 \begin{equation}
- \Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} K (k) 
+   \Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} K (k) 
 \end{equation}
 
 Force is given by
 \begin{equation}
    \vec{F} = - \vec{\nabla} \Phi 
 \end{equation}
-\end{center}
 
 we know that,
-\begin{center}
-
 \begin{equation}
-\frac{\partial K (k)}{\partial k } = \frac{E(k)- (1-k^2) K(k)}{k(1- k^2)} 
+   \frac{\partial K (k)}{\partial k } = \frac{E(k)- (1-k^2) K(k)}{k(1- k^2)} 
 \end{equation}
-\end{center}
 where, E(k) is the Eliiptic Integral of Second kind,
-
-\begin{center}
 
 \begin{equation}
  \frac{\partial q}{\partial r} = 2 (r + R)
@@ -338,51 +321,27 @@ where, E(k) is the Eliiptic Integral of Second kind,
 \frac{\partial \Phi}{\partial r} = - \frac{GMm }{\pi} [ \frac{E(k) - (1-k^2) K(k)}{k (1-k^2)} (\frac{2R - k^2 (r + R)}{kq} \sqrt{q}) - (\frac{\frac{1}{2} \frac{1}{\sqrt{q}}2 (r + R ) K(k)} {q}] 
 \end{equation}
 
-\end{center}
-
 Simplifying,
 
-\begin{center}
-
-
-$ = - \frac{GMm }{\pi} [\frac{\frac{(E(k)- (1 - k^2 )K(k))(2 R - k^2 (r + R)) - (r + R) K(k) k^2 (1 - k^2)}{k^2 (1-k^2)\sqrt{q}}}{q}] $
-
-
-$ = - \frac{GMm }{\pi} [\frac{2 R E(k) - E (k) k^2 (r+R) - 2 R(1-k^2) K(k)}{k^2 (1 - k^2) q^\frac{3}{2}}] $
-
-
-
-
-
 \begin{equation}
- = - GMm \frac{1}{\pi k^2 (1 - k ^2)  q^\frac{3}{2}} [2 R E (k) - k^2 r E(k)- k^2 R E(k) - 2 R K(k) + 2 R k^2 K(k)]
+   \begin{gathered}
+      = - \frac{GMm }{\pi} [\dfrac{\dfrac{(E(k)- (1 - k^2 )K(k))(2 R - k^2 (r + R)) - (r + R) K(k) k^2 (1 - k^2)}{k^2 (1-k^2)\sqrt{q}}}{q}]\\[0.5\baselineskip]
+      = - \frac{GMm }{\pi} [\frac{2 R E(k) - E (k) k^2 (r+R) - 2 R(1-k^2) K(k)}{k^2 (1 - k^2) q^\frac{3}{2}}]\\[0.5\baselineskip]
+      = - GMm \frac{1}{\pi k^2 (1 - k ^2)  q^\frac{3}{2}} [2 R E (k) - k^2 r E(k)- k^2 R E(k) - 2 R K(k) + 2 R k^2 K(k)]\\[0.5\baselineskip]
+      = - GMm \frac{1}{\pi k^2 (1 - k ^2)  q^\frac{3}{2}} [E (k) 2R - k^2 (r + R) - 2 R K(k) (1 - k^2) ] 
+   \end{gathered}
 \end{equation}
-
-\begin{equation}
- = - GMm \frac{1}{\pi k^2 (1 - k ^2)  q^\frac{3}{2}} [E (k) 2R - k^2 (r + R) - 2 R K(k) (1 - k^2) ] 
-\end{equation}
-\end{center}
  
-substituting,
- \begin{center}
- $ \mu = k^2  $
- \end{center}
-
-
-The final expression for Gravitational Force is:
-\begin{center}
-
+Substituting $\mu = k^2$ the final expression for Gravitational Force is:
 \begin{equation}
- \vec{F}_{r} = - GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\sqrt{\mu}) (1 - \mu))- E (\sqrt{\mu}) (2 R - \mu (r + R))
+   \vec{F}_{r} = - GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\sqrt{\mu}) (1 - \mu))- E (\sqrt{\mu}) (2 R - \mu (r + R))
 \end{equation}
-
-\end{center}
 
 \subsection{Data from Histogram}
 To calculate force, we require information about the masses of the rings. For that purpose, we extracted data from the Histogram of masses plotted as a function of normalized intensity. In astronomy, we have direct relation between the Luminosity and Masses of a celestial object, i.e. 
-
+%
 \begin{equation}
-\frac{L}{L_{\odot}} = (\frac{M}{M_{\odot}})^4 
+   \frac{L}{L_{\odot}} = (\frac{M}{M_{\odot}})^4 
 \end{equation}
 
 So by saving the values of luminosity from the same file, we used in section 2.2.2 , and using the equation (2.24) we get the values of masses for each body.  
