@@ -92,15 +92,15 @@ The verification of Modified Newtonian Dynamics depends upon the rotation curve 
 
 \subsection{Image Analysis of M31}
 
-Image analysis allows us to extract meaningful information from a digital image. I uchose the Python language for this purpose. Python is a precise coding language that allows us to write complex code in fewer lines.
+Image analysis allows us to extract meaningful information from a digital image. I chose the Python language for this purpose. Python is a precise coding language that allows us to write complex code in fewer lines.
 
- Figure \ref{andromeda_image} is an image of one quadrant of the Andromeda Galaxy released by Hubble Telescope Images in $2015$ which was used for our analysis. It is an 8-bit RGB JPEG image of width 6000 pixel and height 1918 pixels.
+Figure \ref{andromedaimage} is an image of one quadrant of the Andromeda Galaxy released by Hubble Telescope Images in $2015$ which was used for our analysis. It is an 8-bit RGB JPEG image of width 6000 pixel and height 1918 pixels.
     
 \begin{figure}[h!]
-\label{andromeda_image}
-\centering
-\includegraphics[scale=0.125]{andromeda.jpg}
-\caption{Andromeda Galaxy, M31, NGC 224}
+   \centering
+   \includegraphics[scale=0.125]{andromeda.jpg}
+   \caption{Andromeda Galaxy, M31, NGC 224}
+   \label{andromedaimage}
 \end{figure}
 
 We assume that each pixel in the image corresponds to a Main Sequence star whose luminosity is related to its mass by the relation 
@@ -111,7 +111,7 @@ We assume that each pixel in the image corresponds to a Main Sequence star whose
 
 where $L_{\odot}$ is solar luminosity and $M_{\odot}$ is solar mass \cite{LMratio}.
 
-We further assumed the Andromeda Galaxy to be roughly circular with a cylinderically symmetric mass distribution. This allowed us to model the Andromeda Galaxy as a collection of concentric rings. 
+We further assumed the Andromeda Galaxy to be roughly circular with a cylindrically symmetric mass distribution. This allowed us to model the Andromeda Galaxy as a collection of concentric rings. 
 
 Our task was then to analyze the image and calculate the mass of these concentric rings. We chose to divide the galaxy into $400$ concentric rings. This was achieved using the following python code.
 
@@ -203,38 +203,35 @@ def main():
 
 \end{verbatim}
 
-\begin{figure} [h]
-\label{histogram}
-\centering
-\includegraphics[scale=0.45]{400}
-\caption{Mass Distribution of the Andromeda Galaxy }
+\begin{figure}[ht]
+   \centering
+   \includegraphics[scale=0.45]{400}
+   \caption{Mass Distribution of the Andromeda Galaxy}
+   \label{histogram}
 \end{figure}
 
 \end{enumerate}
 
 \section{Calculation of Force}
 
-According to Newton's second law force is directly proportional to acceleration keeping mass constant. For the calculation of force on the objects inside the galaxy we consider it to be a set of concentric rings. The histogram (Figure \ref{histogram}) gives us the mass ditribution of the galaxy as a function of radius. The force on a particle at radius $r$ will be the cummulative effect of force due all of the concentric rings.
+According to Newton's second law force is directly proportional to acceleration keeping mass constant. For the calculation of force on the objects inside the galaxy we consider it to be a set of concentric rings. The histogram (Figure \ref{histogram}) gives us the mass distribution of the galaxy as a function of radius. The force on a particle at radius $r$ will be the cumulative effect of force due all of the concentric rings.
 
-Let us consider the problem of finding the gravitational potential in all space produced by a ring of mass M. In most analytical approaches to this problem the solution is found only along the symmetry axis of the ring where the integrals evaluate to elementry functions. To solve for the force exerted by a massive ring with in the galactic plane we are required to calculate the off-axis solution that involves special functions, in this case Elliptic Integrals \cite{paper}.
+Let us consider the problem of finding the gravitational potential in all space produced by a ring of mass M. In most analytical approaches to this problem the solution is found only along the symmetry axis of the ring where the integrals evaluate to elementary functions. To solve for the force exerted by a massive ring with in the galactic plane we are required to calculate the off-axis solution that involves special functions, in this case Elliptic Integrals \cite{paper}.
  
-The system I am working on is given by Figure \ref{ring} ring of mass M and radius R lies in the x-y plane with its centre at point the origin. A mass $m$ is at a distance $r$ as described in Figure \ref{ring}, 
-
-\begin{figure}[!tbp] 
+The system I am working on is given by Figure \ref{ring}. A ring of mass M and radius R lies in the x-y plane with its centre at the origin. A mass $m$ is at a distance $r$ as described in Figure \ref{ring}, 
 
 \centering
-\begin{minipage}[b]{0.3\textwidth}
-\label{ring}
-\includegraphics[width=\textwidth]{fig2}
-\caption{Ring of Mass}
+\begin{minipage}[b]{0.4\textwidth}
+      \includegraphics[width=\textwidth]{fig2}
+      \captionof{figure}{Ring of Mass}
+      \label{ring}
 \end{minipage}
 \hfill
-\begin{minipage}[b]{0.3\textwidth}
-\label{vectordiagram}
-\includegraphics[width=\textwidth]{fig1}
-\caption{Vector Diagram}
+\begin{minipage}[b]{0.4\textwidth}
+      \includegraphics[width=\textwidth]{fig1}
+      \captionof{figure}{Vector Diagram}
+      \label{vectordiagram}
 \end{minipage}
-\end{figure}
 
 From Figure \ref{vectordiagram}, 
 
