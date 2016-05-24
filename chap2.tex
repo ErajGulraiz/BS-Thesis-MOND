@@ -109,94 +109,81 @@ We assume that each pixel in the image corresponds to a Main Sequence star whose
 \frac{L}{L_{\odot}} = (\frac{M}{M_{\odot}})^4 
 \end{equation}
 
-where $L_{\odot}$ is solar luminosity and $M_{\odot}$ is solar mass.
+where $L_{\odot}$ is solar luminosity and $M_{\odot}$ is solar mass \cite{LMratio}.
 
 We further assumed the Andromeda Galaxy to be roughly circular with a cylinderically symmetric mass distribution. This allowed us to model the Andromeda Galaxy as a collection of concentric rings. 
 
-Our task was then to analyze the image and calculate teh mass of these concentric rings. We chose to divide the galaxy into $400$ concentric rings. this was achieved using the following python code.
+Our task was then to analyze the image and calculate the mass of these concentric rings. We chose to divide the galaxy into $400$ concentric rings. This was achieved using the following python code.
 
 \subsection{Program for Image Analysis}
-The program was divided into a few parts to create a clear concept of purpose of each part. Following are the parts of the program.
+The program was divided into different modules to create a clear concept of purpose of each module. Following are the modules of the program.
 \begin{enumerate}
 \item \textbf{Defining the Image Dimensions}
 
 The following code gives us the dimensions of the image being used and the spectral type of the image as the third entity.
 
 \begin{verbatim}
-
 andro = misc.imread('andromeda.jpg')
-    (w, h,d) = andro.shape
+(w, h,d) = andro.shape
 \end{verbatim}
 
 Output: (1918,6000,3)
 
 
-\item \textbf{Calculation of the Distance of Certain Pixel from the Centre of the Galaxy}
+\item \textbf{Calculation of the Distance of a certain pixel from the centre of the Galaxy}
 
-This part defines the co-ordinates of the Origin as $x_{0}$ and $y_{0}$. This function iterates over the whole image to calaculate the distances of each pixel from the origin point by simple formula of the Pythagoras theorem.
+This part defines the co-ordinates of the Origin as $x_{0}$ and $y_{0}$. The function iterates over the whole image to calculate the distance of each pixel from the centre of the galaxy using Pythagoras' theorem.
 
 \begin{verbatim}
-
 x0 = 88.23
 y0 =1675.78
+
 def calc_distance(x0,y0,x,y):
 
     x_dist = (x - x0)
     y_dist = (y-y0)
 
     return  math.sqrt(x_dist*x_dist+y_dist*y_dist)
-
 \end{verbatim}
-Output:
 
-\item \textbf{Intensity Calculation for Each Pixel}
+\item \textbf{Intensity calculation for each pixel}
 
-The Intensity of each pixel is required to estimate the mass of each astronomiacal object in the galaxy, as intensity is directly proportional to the energy of the celestial object [1234].The image I used, was an RGB image of the galaxy, to calculate the intensity of each pixel I had to convert it first into grayscale.This is done by fetching the RGB values of each pixel and taking square root of their squares divided by $3$. The pixel values are better to be normalized to get the results ranging from $0$ to $1$. The following part of the program explains this computation in a better way.
-
+The intensity of each pixel is required to estimate the mass of each astronomical object in the galaxy, as intensity is directly proportional to the energy of the celestial object [1234]. To calculate the intensity of each pixel I had to first convert it into grayscale. This was done by fetching the RGB values of each pixel and taking the square root of their squares divided by $3$. The grayscale pixel values are then normalized to fall within the range $0$ to $1$. 
 \begin{verbatim}
-
-denom= math.sqrt(3)*255
+denom = math.sqrt(3)*255
 
 def calc_gs_intensity(i):
-
 
     R = float(i[0])
     G = float(i[1])
     B = float(i[2])
 
     return math.sqrt(R*R+G*G+B*B)/denom
-
-
 \end{verbatim}
-
-Output:
 
 \item \textbf{Storing the Data}
 
-From the previously explained parts of the program, i got a large number of values. So, to use the calculated data it is necessary to create a data file, that can store maximum number of values and can again be used to plot a graph. The values from the distances and the intensity values are stored simultaneously in a single CSV (comma separated values) file.
-\begin{verbatim}
+To avoid repeating this calculation the intensity and distance data calculated was stored in an interim data file (CSV).
 
+\begin{verbatim}
 with open('data.csv', 'w') as fout:
 
         for x in range(w):
-            for y in range (h):
+            for y in range(h):
 
-                r= calc_distance(x0,y0,x,y)
+                r = calc_distance(x0,y0,x,y)
                 i = calc_gs_intensity( andro[x,y] )
 
-                print (r)
-                print (i)
-
                 fout.write(str(r) + "," + str(i)+ "\n")
-
-
 \end{verbatim}
-Output:
 
 \item \textbf{Histogram}
 
-Now, to analyze the mass distribution of M31, i plotted a histogram of radius versus Commulative Normalized Intensity. This gives us the mass density of the galaxy to be decreasing as we move far from the centre of the galaxy.
+Now to analyze the mass distribution of M31 I plotted a histogram of radius versus cummulative normalized intensity. By using 400 bins to collect the data I was able to calculate the cummulative intensity in 400 concentric rings about the galactic center.
+
 \begin{verbatim}
+import matplotlib.pyplot as plt
+
 def main():
 
     reader = csv.reader (open('data.csv', 'rb'), delimiter=',')
@@ -206,7 +193,6 @@ def main():
 
     for row in reader:
         r= float(row[0])
-        print r
         R.append( r )
         I.append( float(row[1]) )
 
@@ -218,6 +204,7 @@ def main():
 \end{verbatim}
 
 \begin{figure} [h]
+\label{histogram}
 \centering
 \includegraphics[scale=0.45]{400}
 \caption{Mass Distribution of the Andromeda Galaxy }
@@ -227,46 +214,44 @@ def main():
 
 \section{Calculation of Force}
 
-According to Newton's second law, force is directly proportional to acceleration keeping mass constant. For the calculation of force on the objects inside the galaxy, we consider it to be a set of concentric rings. The histogram from the above section gives us the mass ditribution of the galaxy as moving through the radius. The force on a particle at radius 'r' will be the commulative effect of force due to the rings before and after the radius 'r'.
+According to Newton's second law force is directly proportional to acceleration keeping mass constant. For the calculation of force on the objects inside the galaxy we consider it to be a set of concentric rings. The histogram (Figure \ref{histogram}) gives us the mass ditribution of the galaxy as a function of radius. The force on a particle at radius $r$ will be the cummulative effect of force due all of the concentric rings.
 
-Let us consider the problem of finding the Gravitational potential in all space produced by a ring of mass M. In most analytical approaches to problem, solution is found only along the symmetry axis of the ring, where the integrals are expressed in terms of elementry functions. To solve for the potential of galaxy we require to calculate the off-axis solution that involves special functions or in this case Elliptic Integrals.
+Let us consider the problem of finding the gravitational potential in all space produced by a ring of mass M. In most analytical approaches to this problem the solution is found only along the symmetry axis of the ring where the integrals evaluate to elementry functions. To solve for the force exerted by a massive ring with in the galactic plane we are required to calculate the off-axis solution that involves special functions, in this case Elliptic Integrals \cite{paper}.
  
-The system i am working on is given by the figure below, as in Figure 2.5.A ring of mass M and radius R, rests in xy axis with its centre at point O. A mass m is at a distance r as described in Figure 2.6, the 
+The system I am working on is given by Figure \ref{ring} ring of mass M and radius R lies in the x-y plane with its centre at point the origin. A mass $m$ is at a distance $r$ as described in Figure \ref{ring}, 
 
 \begin{figure}[!tbp] 
+
 \centering
 \begin{minipage}[b]{0.3\textwidth}
+\label{ring}
 \includegraphics[width=\textwidth]{fig2}
-\caption{Figure A}
+\caption{Ring of Mass}
 \end{minipage}
 \hfill
 \begin{minipage}[b]{0.3\textwidth}
+\label{vectordiagram}
 \includegraphics[width=\textwidth]{fig1}
-\caption{Figure B}
+\caption{Vector Diagram}
 \end{minipage}
 \end{figure}
 
-From Figure (2.5), 
+From Figure \ref{vectordiagram}, 
 
 \begin{center}
 $ \vec{r} = r.\hat{i} $
 
-$ \vec{R} = R(cos \theta \hat{i} + sin \theta \hat{j} ) $
+$ \vec{R} = R\,(cos \theta \hat{i} + sin \theta \hat{j} ) $
 
-$ \vec{p} = \vec{R}-\vec{r} $
-
-$ = (R cos \theta-r) \hat{i} + R sin \theta \hat{j} $
+$ \vec{p} = \vec{R}-\vec{r} = (R cos \theta-r) \hat{i} + R sin \theta \hat{j} $
 
 
 $ \vert \vec{p}\vert = \sqrt{(R cos \theta - r)^{2} + (R sin \theta )^{2} }$
 
-
- 
-
-The Gravitational Potential is given by 
-
+\vspace{0.5\baselineskip}
+The Gravitational Potential is given by
 \begin{equation}
- d{\Phi}= \frac{GmdM}{\vert (\vec{p})\vert} 
+ d{\Phi}= \frac{GmdM}{\vert \vec{p}\vert} 
 \end{equation}
 
 
@@ -274,51 +259,47 @@ $ \Phi = \int {d{\Phi}} $
   
 
 $ d M = \lambda R d \theta  $
-
+\vspace{0.5\baselineskip}
 By substituting Linear Mass Distribution ,
-
 \begin{equation}
 \Phi= \frac{GMmR}{2\pi R} \int_{0}^{2\pi} \frac {d \theta } {\vert \vec{p} \vert^\frac{1}{2}}
 \end{equation}
 
 \begin{equation}
+\label{phi1}
 \Phi= \frac{GMm}{2\pi} \int_{0}^{2\pi}  
 \frac{d{\theta}}{\sqrt{R^2 - 2 R r \cos \theta + r^2}}
 \end{equation}
 
 
-substitution of the following parameters in the equation (2.8) gives us (2.9)
+Substitution of the following parameters in equation \eqref{phi1} gives us \eqref{phi2}
 
 $ d \theta = 2 d \beta $,
 $ \theta = \pi - 2 \beta $,
 $ \beta = \frac{\pi - \theta}{2} $
 
 \begin{equation}
+\label{phi2}
 \Phi (\vec{r}) = \frac{GMm}{ \pi} \int_{0}^{\frac{\pi}{2}}  \frac{d \beta }{\sqrt{r^2 + R^2 +2 R r (1 - 2 \sin^2 \beta )}}  
 \end{equation}
 
+substituting $ q = r^2 + R^2 + 2 r R$ results in 
 \begin{equation}
 \Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} \int_{0}^{\frac{ \pi}{2}} \frac{d \beta }{\sqrt{1 - \frac{4 r R}{q} \sin^2 \beta}}   
 \end{equation}
  
-
-$ q = r^2 + R^2 +2 r R, $ 
-$ k = \sqrt{\frac{4 r R }{q}} $
-$ k^2 = \frac{4 r R}{q} $
-
-subtitution of the following in equation(2.10) results in :
-
+and then substituting $ k = \sqrt{\frac{4 r R }{q}} $ and $ k^2 = \frac{4 r R}{q} $ results in
 \begin{equation}
+\label{elliptic}
 \Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} \int_{0}^{\frac{ \pi}{2}} \frac{d \beta } {1 - k^2 \sin \beta } 
 \end{equation}
 
-we know that the equation 2.12 is the Elliptic Integral of First kind,
+We know that the equation \eqref{elliptic} is the Elliptic Integral of the First kind,
 \begin{equation}
 \frac{d \beta } {1 - k^2 \sin \beta } = K (k) 
 \end{equation}
  
-by substituting in equation (2.11)
-
+Therefore Equation \eqref{elliptic} can be expressed as
 \begin{equation}
  \Phi (\vec{r}) = \frac{GMm}{ \pi} \frac{1}{\sqrt{q}} K (k) 
 \end{equation}
