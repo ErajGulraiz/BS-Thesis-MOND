@@ -299,7 +299,7 @@ we know that,
 \begin{equation}
    \frac{\partial K (k)}{\partial k } = \frac{E(k)- (1-k^2) K(k)}{k(1- k^2)} 
 \end{equation}
-where, E(k) is the Eliiptic Integral of Second kind,
+where, E(k) is the Elliptic Integral of the Second kind,
 
 \begin{equation}
  \frac{\partial q}{\partial r} = 2 (r + R)
@@ -322,7 +322,6 @@ where, E(k) is the Eliiptic Integral of Second kind,
 \end{equation}
 
 Simplifying,
-
 \begin{equation}
    \begin{gathered}
       = - \frac{GMm }{\pi} [\dfrac{\dfrac{(E(k)- (1 - k^2 )K(k))(2 R - k^2 (r + R)) - (r + R) K(k) k^2 (1 - k^2)}{k^2 (1-k^2)\sqrt{q}}}{q}]\\[0.5\baselineskip]
@@ -338,17 +337,15 @@ Substituting $\mu = k^2$ the final expression for Gravitational Force is:
 \end{equation}
 
 \subsection{Data from Histogram}
-To calculate force, we require information about the masses of the rings. For that purpose, we extracted data from the Histogram of masses plotted as a function of normalized intensity. In astronomy, we have direct relation between the Luminosity and Masses of a celestial object, i.e. 
+To calculate force, we require information about the masses of the rings. For that purpose, we extracted mass data from the Histogram of normalized intensity as a function of radius plotted as a function of normalized intensity. In astronomy we have a direct relation between the luminosity and masse of a celestial object, i.e. 
 %
 \begin{equation}
    \frac{L}{L_{\odot}} = (\frac{M}{M_{\odot}})^4 
 \end{equation}
-
-So by saving the values of luminosity from the same file, we used in section 2.2.2 , and using the equation (2.24) we get the values of masses for each body.  
+We used this equation to convert intensity data to the masses of the rings.   
 
 \subsection{Function Definition for Data Extraction from Histogram}
 \begin{verbatim}
-
     with open('data.csv', 'w') as fout:
 
         for x in range(w):
@@ -358,13 +355,8 @@ So by saving the values of luminosity from the same file, we used in section 2.2
                 i = calc_gs_intensity( andro[x,y] )
                 m= i**0.25 
 
-                print (r,i,m)
-
-
                 fout.write(str(r) + "," + str(i)+ "," + str(m) + "\n")
-
 \end{verbatim}
-
 
 \subsection{Function Definition for Calculation of Force}
 \begin{verbatim}
@@ -387,48 +379,35 @@ def f(m,M,R,r,con,ks,g):
 
 def F(ms,M,R,r):
 
-    # print(r)s
-    # print(R)
     con = q(r,R)
-    # print (con)
     ks = k(r,R,con)
-    # print (ks)
     g = 6.67e-11
 
-    # fa = f(m,M,R,r,con,ks,g)
-    # print (fa)
-
-
     return f(ms,M,R,r,con,ks,g)
-
 \end{verbatim}
-
+To verify our calculations we plotted the gravitational force exerted by a single ring of mass of a specified radius.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{force41R} 
-\caption{force on a single ring }
+\caption{Force on a single ring }
 \end{figure}
 
 
 
-\section{Calculation for Velocity }
+\section{Calculation of Velocity }
 
-Centripetal force is known to be,
-
-\begin{center}
+Centripetal force is known to be given by
 \begin{equation}
-\vec{F_{c} = \frac{m v^2 }{r}}
+F_{c} = \frac{m v^2 }{r}
 \end{equation}
-
+where the centripetal force is provided by the gravity of the massive ring
 \begin{equation}
 \vec{F}_{r} = - GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\sqrt{\mu}) (1 - \mu))- E (\sqrt{\mu}) (2 R - \mu (r + R))
 \end{equation}
-
+which gives us the following expression for rotational velocity
 \begin{equation}
 v = \sqrt{\frac{GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\sqrt{\mu}) (1 - \mu))- E (\sqrt{\mu}) (2 R - \mu (r + R))}{r}}
 \end{equation}
-
-\end{center}
 
 \subsubsection{Function Definition for Velocity}
 \begin{verbatim}
@@ -455,12 +434,10 @@ v = \sqrt{\frac{GMm \frac{1}{\pi q^ \frac{3}{2} (1- \mu)} \frac{1}{\mu} (2 R K(\
         return vs
 \end{verbatim}
 
-
 \section{Observed Rotation Curve}
 
-The data used in this program is precalculated data of radius in kpc and rotational velocities in $kms^{-1}$ for Andromeda Galaxy.\cite{observed} 
+The data used in this program is precalculated data of radius in kpc and rotational velocities in $kms^{-1}$ for the Andromeda Galaxy \cite{observed}.
 \begin{verbatim}
-
 x= []
 y= []
 
@@ -469,36 +446,31 @@ with open ('rd.txt','r') as f:
 
         x.append((row)) #appends the data in empty list for distances
 
-
-
 with open ('vrot.txt', 'r') as f1:
     for row1 in f1:
 
         y.append((row1)) #appends the data in empty list for rotational velocities.
 
-
 pylab.ylim([0,400])
 pylab.xlim([0,35])
 plt.plot(x,y)
 plt.scatter(x,y)
-
-
 \end{verbatim}
 
 \section{Optimization of Velocity and Mass}
-The velocities and masses according to the calculated data were not able to regenerate the rotation curve as required, so curve fitting was reqquired. In the program below, we optimize the calculated curve according to the observed and get the values of parameters as $v_{0}$ and $m_{0}$
+The rotation curve calculated using data derived from image analysis did not match the observed rotation curve. The first difference was the scale of the velocities. Since the image data only gave us mass in arbitrary units our calculated velocities were only accurate upto a proportionality factor which we named $v_0$. 
+
+The rotation curve still differed significantly in the low radius region. We postulated the existance of a massive central balck hole with mass $m_0$ as an explanation for this discrepancy.
+
+The values of the parameters $v_0$ and $m_0$ were calculated by optimizing the calculated data to fit the observed data. 
 \begin{verbatim}
 a,b = scipy.optimize.curve_fit(fit.v, R, V)
-    print (a)
-    print b
-
 
     v0 = a[0]
     m0 = a[1]
     v = fit.v(R,v0,m0)   #for black hole mass
     pmv = plt.scatter(R,v, color= 'g',label ='m0 & v0')
     plt.plot(R,v)
-
 
     vo = fit.v(R,v0,m0_o)  #for very small mass .. i.e the first entry in the list.
     pv = plt.scatter(R,vo , color='y', label = 'v0')
