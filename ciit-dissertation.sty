@@ -7,7 +7,8 @@
 \ProvidesPackage{ciit-dissertation}[2016/05/08]
 
 
-\RequirePackage[backend=biber]{biblatex}
+\RequirePackage[toc,page]{appendix}
+\RequirePackage[backend=biber,sorting=none]{biblatex}
 \RequirePackage{colortbl}       % Used to change background color of table rows
 \RequirePackage{emptypage}      % suppress page numbers of empty pages
 \RequirePackage{enumitem}       % Change indentation of itemize and enumerate
@@ -20,7 +21,6 @@
 
 % Rename the Bibliography title to read "References"
 \DefineBibliographyStrings{english}{bibliography={References},}
-
 
 % Ensure that ALL page numbers are in the footer on the right
 \pagestyle{fancy}

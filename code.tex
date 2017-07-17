@@ -1,0 +1,458 @@
+\chapter{Code}
+\section{Calculation of Distances and Intensity}
+
+\begin{Verbatim}[fontsize=\small,baselinestretch=0.9]
+import matplotlib.pyplot as plt
+import csv
+import matplotlib.mlab as mlab
+import numpy as np
+
+
+
+import math
+from scipy import misc
+# np.seterr(over='ignore')
+
+
+x0 = 88.23
+y0 =1675.78
+
+denom= math.sqrt(3)*255
+
+def main():
+
+
+    andro = misc.imread('andromeda.jpg')
+    (w, h,d) = andro.shape
+
+
+    with open('data.csv', 'w') as fout:
+
+        for x in range(w):
+            for y in range (h):
+
+                r= calc_distance(x0,y0,x,y)
+                i = calc_gs_intensity( andro[x,y] )
+                m= i**0.25
+
+                fout.write(str(r) + "," + str(i)+ "," + str(m) + "\n")
+
+
+
+# i: numpy.ndarray with 3 values: R, G, B
+# This function takes the array and converts from RGB to greyscale intensity value between 0 and 1
+denom= math.sqrt(3)*255
+
+def calc_gs_intensity(i):
+
+    R = float(i[0])
+    G = float(i[1])
+    B = float(i[2])
+
+    return math.sqrt(R*R+G*G+B*B)/denom
+
+
+def calc_distance(x0,y0,x,y):
+
+    x_dist = (x - x0)
+    y_dist = (y-y0)
+
+    return  math.sqrt(x_dist*x_dist+y_dist*y_dist)
+
+
+if __name__ == '__main__':
+    main()
+\end{Verbatim}
+
+\section{Histogram for 400 Bins}
+\begin{Verbatim}[fontsize=\small,baselinestretch=0.9]
+import csv
+import matplotlib.pyplot as plt
+
+
+def main():
+
+    reader = csv.reader (open('data.csv', 'rb'), delimiter=',')
+
+    R = []
+    m= []
+
+    for row in reader:
+        r= float(row[0])
+        #print r
+        R.append( r* 0.005620)
+        m.append( float(row[2]) )
+
+    plt.hist(R, weights=m, bins = 400)
+    n,bins,patches = plt.hist(R, weights=m, bins = 400) ## gets the value of bin boundaries and weights for each bin ..
+    #print(n)
+    #print (bins)
+
+    with open('histdata.csv', 'w') as fout:
+
+        for i in range(len(n)):
+            fout.write(  str((bins[i] + bins[i+1])/ 2)+ ", " +str(n[i]) + "\n") ##calculates the midpoint of each bin and saves it to file. + saves the value of weights for each bin
+
+    plt.title('Mass distribution of Andromeda')
+    plt.xlabel('radius   (Kpc)    1pixel = 0.05620 kpc<  ')
+    plt.ylabel('Masses relative to intensity')
+    plt.show()
+
+
+
+if __name__ == '__main__':
+
+    main()
+\end{Verbatim}
+
+
+\section{Observed Rotation Curve}
+\begin{Verbatim}[fontsize=\small,baselinestretch=0.9]
+import numpy as np
+import matplotlib.pyplot as plt
+import pylab
+
+
+
+x= []
+y= []
+
+with open ('rd.txt','r') as f:
+    for row in f:
+
+        x.append((row))
+
+
+
+with open ('vrot.txt', 'r') as f1:
+    for row1 in f1:
+
+        y.append((row1))
+
+
+pylab.ylim([0,400])
+pylab.xlim([0,35])
+plt.plot(x,y)
+plt.scatter(x,y)
+
+
+plt.title ('Andromeda Galaxy Rotation Curve')
+plt.xlabel('distance from galactic centre in kpc')
+plt.ylabel('rotational velocity km/s')
+plt.show()
+savefig('plot.jpg')
+
+\end{Verbatim}
+
+\section{Force and Velocity Calculation and Optimization}
+\begin{Verbatim}[fontsize=\small,baselinestretch=0.9]
+import csv
+import numpy as np
+import scipy
+from scipy.special import ellipk, ellipe
+import matplotlib.pyplot as plt
+from pylab import *
+import matplotlib.pyplot as plt
+import pylab
+from scipy.optimize import curve_fit
+from numpy import array
+import numpy
+
+g = 6.67e-11
+ms=1  #mass of the point
+numpy.seterr('raise')
+
+def main():
+
+    Mass =[] #mass of the ring
+    Rad=[]
+
+    with open ('histdata.csv', 'r') as f:
+        for row in f:
+            values= row.split(',')
+
+            Rad.append(float(values[0])) #saves values of radius from data file in empty list.
+            Mass.append(float(values[1]))
+
+    m0_o = Mass[0]
+
+    # plt.plot(Rad,Mass)
+    # plt.show()
+
+    fit = Fit(Rad, Mass)
+
+    x= []
+    y= []
+
+    with open ('rd.txt','r') as f:
+        for row in f:
+
+            x.append(float(row))
+
+
+
+    with open ('vrot.txt', 'r') as f1:
+        for row1 in f1:
+
+            y.append(float(row1))
+
+
+
+    R = numpy.array(x)
+    V = numpy.array(y)
+
+    #
+    a,b = scipy.optimize.curve_fit(fit.v, R, V)
+    print (a)
+    print b
+
+
+    v0 = a[0]
+    m0 = a[1]
+    v = fit.v(R,v0,m0)   #for black hole mass
+    pmv = plt.scatter(R,v, color= 'g',label ='m0 & v0')
+    plt.plot(R,v)
+
+
+    vo = fit.v(R,v0,m0_o)  #for very small mass .. i.e the first entry in the list.
+    pv = plt.scatter(R,vo , color='y', label = 'v0')
+    plt.plot(R,vo)
+
+
+    # a,b = scipy.optimize.curve_fit(fit.vn, R, V)   #optimizing without the mass.. only velocity will give a large value.
+    # print (a,b)
+    #
+    # v0= a[0]
+    #
+    #
+    # vm = fit.vn(R,v0)
+    # plt.scatter(R,vm, color= 'c')
+    # plt.plot(R,vm, color= 'c')
+
+    # a,b = scipy.optimize.curve_fit(fit.K, R, V, None, None, False, True, ([1, 0, 1],[np.inf, np.inf, 1.5]))
+    #
+    # v0= a[0]
+    # m0 = a[1]
+    # km = a[2]
+    #
+    # kc = fit.K(R,v0,m0,km)
+    # plt.scatter(R,kc, color= 'm')
+    # plt.plot(R,kc, color= 'm')
+    # print (v0,m0,km)
+
+    # a,b = scipy.optimize.curve_fit(fit.v_mond, R, V)
+    # print ('v_mond gives: \n')
+    # print (a)
+    # print b
+
+
+    # v0 = a[0]
+    # m0 = a[1]
+    # a0 = a[2]
+    # v_m = fit.v_mond(R, v0,m0,a0)
+    # plt.scatter(R,v_m, color= 'c')
+    # plt.plot(R,v_m, color= 'c')
+
+
+    curve= velocity_curve(Rad,Mass)
+
+    # po= act_curve(x,y)
+    # plt.legend([po,pv,pmv ], ['Observed', 'Optimized: v0','Optimized: v0 & m0 ' ])
+    plt.show()
+
+def act_curve(x,y):
+
+    # x = x[:100]
+    # y = y[:100]
+
+
+    # pylab.ylim([0,400])
+    # pylab.xlim([0,35])
+    plt.plot(x,y, label = 'Observed')
+    po= plt.scatter(x,y, color ='r')
+
+
+
+    plt.title ('Andromeda Galaxy Rotation Curve')
+    plt.xlabel('distance from galactic centre in kpc ')
+    plt.ylabel('rotational velocity km/s')
+    # plt.show()
+    return po
+
+
+
+def velocity_curve(Rad, Mass):
+
+    force = []
+    vel = []
+    j=200
+
+    for r in Rad:       ##for force inside the point we want to calculate, r will be fixed and R will be changing.
+        T=0
+
+        for i in range(len(Rad)):
+            R= Rad[i]
+            M= Mass[i] if i == j else 0
+            if  r!=R:
+                lF = F(ms,M,R,r)
+                # print(lF,r,R,M)
+                T= T+lF
+
+        force.append(T)
+
+        print(r,T)
+    # print(len(force))
+    # print (len(Rad))
+    print (F(ms,10,13,0.001))
+
+
+    plt.plot(Rad,force, color = 'm')
+    plt.title('Force vs.radius (for a single ring)')
+    plt.xlabel('Radius (in kpc)')
+    plt.ylabel('Force')
+
+
+    # for j in range(len(Rad)):
+    #     r=Rad[j]
+    #     f= force[j]
+    #     v= ((-f*r)/ms)**0.5
+    #     # print (r,f,v)
+    #     vel.append(v)
+    # plt.plot(Rad,vel)
+    # plt.scatter(Rad,vel, color = 'c')
+    # plt.title('Velocity vs Radius')
+    # plt.xlabel('Radius (in parsecs)')
+    # plt.ylabel('velocity')
+
+    plt.show()
+
+def q(r,R) :
+
+    return r*r+R*R+2*r*R
+
+def k(r,R,con) :
+    b = float(4*r*R)
+    return (b/con)
+
+def f(m,M,R,r,con,ks,g):
+    d= 2*R - ks * (r+R)
+    E=  ellipe(ks**0.5 )##(elliptic function of 2nd kind)
+    j= (1-ks)
+    G= 2*R* ellipk(ks**0.5) ## elliptic function of 1st kind
+    h= math.pi * (con ** 1.5) *j
+
+    return (((-1*M*ms*g)/ h) * (1/ks)* (G *j -E *d) )
+
+def F(ms,M,R,r):
+
+    # print(r)s
+    # print(R)
+    con = q(r,R)
+    # print (con)
+    ks = k(r,R,con)
+    # print (ks)
+    g = 6.67e-11
+
+    # fa = f(m,M,R,r,con,ks,g)
+    # print (fa)
+
+
+    return f(ms,M,R,r,con,ks,g)
+
+
+class Fit:
+
+    def __init__(self, Rad, Mass):
+
+        self.Rad = Rad
+        self.Mass = Mass
+
+
+    def v(self, rs, v0, m0):
+
+        vs=[]
+
+        self.Mass[0] = m0
+
+        for r in rs:
+
+            T=0
+
+            for i in range(len(self.Rad)):
+                R= self.Rad[i]
+                M= self.Mass[i]
+                if abs(R-r) > 0.5:
+                    lF = F(ms,M,R,r)
+                    T= T+lF
+
+            v = v0 * (abs(T*r))**0.5
+            vs.append(v)
+
+        return vs
+
+    def vn(self, rs, v0):
+
+        vs=[]
+
+        for r in rs:
+
+            T=0
+
+            for i in range(len(self.Rad)):
+                R= self.Rad[i]
+                M= self.Mass[i]
+                if abs(R-r) > 0.5:
+                    lF = F(ms,M,R,r)
+                    T= T+lF
+
+            v = v0 * (abs(T*r))**0.5
+            vs.append(v)
+
+        return vs
+
+    def K(self, rs, v0,m0, km):  #any optimizing constant ... now not required.
+
+        vs=[]
+        self.Mass[0] = m0
+
+        for r in rs:
+
+            T=0
+
+            for i in range(len(self.Rad)):
+                R= self.Rad[i]
+                M= self.Mass[i]*km
+                if abs(R-r) > 0.5:
+                    lF = F(ms,M,R,r)
+                    T= T+lF
+
+            v = v0 * (abs(T*r))**0.5
+            vs.append(v)
+
+        return vs
+
+    def v_mond(self, rs, v0,m0,a0):  #fitting for mond .. which didnt work..
+
+        vs=[]
+
+        for r in rs:
+
+            T=0
+
+            for i in range(len(self.Rad)):
+                R= self.Rad[i]
+                M= self.Mass[i]
+                if abs(R-r) > 0.5:
+                    lF = F(ms,M,R,r)
+                    T= T+lF
+
+
+            v = v0 * ((a0/((ms*a0)-T))*abs(T*r))**0.5
+            vs.append(v)
+
+        return vs
+
+
+if __name__ == '__main__':
+    main()
+\end{Verbatim}
