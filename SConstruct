@@ -23,28 +23,9 @@ def contains(word, line):
 # A Generator for showing the pdf (passed in as the 'source')
 # The String returned by the generator is executed by scons as a shell command
 def show_pdf(target, source, env, for_signature):
-    process = subprocess.Popen(['which', 'evince'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, err = process.communicate()
 
-    if "evince" in out:
-        return "evince {} &".format(source[0])
-    else:
-        # Determine if the pdf file is already open in mupdf
-        out = subprocess.check_output(['wmctrl', '-l'])
+    return "view-mupdf {}".format(PDFFILE)
 
-        if contains(PDFFILE, out):                           # True if the PDFFILE is already open in which case it shows up in wmctrl and out.find() returns a semi-positive number for the position of the substring
-
-            # The if above only tests for the word "thesis.pdf" which could be the name of a window other than mupdf. To that end we look for a line matching WMCTR_REGEX
-            for line in out.split('\n'):
-
-                m = WMCTRL_REGEX.match(line)
-
-                # The matched substring provides a more specific way of targeting mupdf only
-                if m:
-                    return 'wmctrl -R "{}" && xdotool key r'.format(m.group(1))
-
-        # If nothing is found in wmctrl we launch the file from scratch
-        return 'mupdf {} &'.format(PDFFILE)
 
 # We create a custom builder that uses the show_pdf generator to show the specified file
 show_builder = Builder(generator = show_pdf)
