@@ -11,10 +11,6 @@ TEXFILE = BASEFILE + ".tex"
 PDFFILE = BASEFILE + ".pdf"
 
 
-# Regex for getting the precise window created by mupdf and listed by wmctrl
-WMCTRL_REGEX = re.compile(".+({}.+72 dpi\))".format(PDFFILE))
-
-
 # A utility function for finding substrings inside strings. Return true if the substring is present:
 def contains(word, line):
     return line.find(word) >= 0
