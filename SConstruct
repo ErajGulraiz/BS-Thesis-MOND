@@ -38,6 +38,7 @@ env.AppendUnique(PDFLATEXFLAGS='-halt-on-error')    # Halts compilation on the f
 
 # The env.PDF declares that report.pdf is to created from (depends upon) report.tex and is build using pdflatex
 pdf = env.PDF(target=PDFFILE, source=TEXFILE)
+Depends(pdf, "ciit-dissertation.cls")		# The pdf depends on the custom cls file
 
 # Declare additional files to be cleaned when 'scons -c' is run
 env.Clean(pdf, ['thesis.run.xml', 'thesis.synctex'])
