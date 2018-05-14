@@ -20,6 +20,7 @@
 \RequirePackage[double spacing]{set space}
 \RequirePackage{tabularx}
 \RequirePackage{xcolor}         % Used by colortbl and to change the color of text
+\RequirePackage{etoolbox}
 
 
 % Rename the Bibliography title to read "References"
@@ -100,6 +101,16 @@
 \newcommand{\externalexaminerinstitution}[1]{\def\@externalexaminerinstitution{#1}}
 \newcommand{\externalexamineraddress}[1]{\def\@externalexamineraddress{#1}}
 
+% Create a custom if that checks if the second author has been declared
+\newtoggle{second}
+
+\ifx\authorTwo\empty                % if \authorTwo is empty we declare \ifsecond to be false
+	\togglefalse{second}
+\else
+	\toggletrue{second}
+\fi
+
+
 % Renew the \maketitle macro so that it creates the title pages we want:
 \renewcommand{\maketitle}{
     % First title page
@@ -135,6 +146,11 @@
         {by}\\[\baselineskip]
         {\large \@author}\\
         {\large \@registrationnumber}\\
+        \iftoggle{second}{
+        	{\large \&}\\
+        	{\large \@authorTwo}\\
+        	{\large \@registrationnumberTwo}\\
+        }{}
     \end{center}
 
     % Third title page
