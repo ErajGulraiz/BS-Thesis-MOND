@@ -56,6 +56,9 @@
 \def\graduate{Graduate}
 
 % Define the global variables and macros for populating them. These are used to specify the content of the front matter.
+\def\@registrationnumber{}
+\def\@authorTwo{}
+\def\@registrationnumberTwo{}
 \def\@dedication{}
 \def\@acknowledgement{}
 \def\@abstract{}
@@ -76,6 +79,8 @@
 \def\@externalexamineraddress{}
 
 \newcommand{\registrationnumber}[1]{\def\@registrationnumber{#1}}
+\newcommand{\authorTwo}[1]{\def\@authorTwo{#1}}
+\newcommand{\registrationnumberTwo}[1]{\def\@registrationnumberTwo{#1}}
 \newcommand{\dedication}[1]{\def\@dedication{#1}}
 \newcommand{\acknowledgement}[1]{\def\@acknowledgement{#1}}
 \newcommand{\abstract}[1]{\def\@abstract{#1}}
