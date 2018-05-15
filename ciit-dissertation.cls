@@ -20,7 +20,7 @@
 \RequirePackage[double spacing]{set space}
 \RequirePackage{tabularx}
 \RequirePackage{xcolor}         % Used by colortbl and to change the color of text
-\RequirePackage{etoolbox}
+\RequirePackage{etoolbox}		% For the \newtoggle macro
 
 
 % Rename the Bibliography title to read "References"
@@ -104,15 +104,18 @@
 % Create a custom if that checks if the second author has been declared
 \newtoggle{second}
 
-\ifx\authorTwo\empty                % if \authorTwo is empty we declare \ifsecond to be false
-	\togglefalse{second}
-\else
-	\toggletrue{second}
-\fi
 
 
 % Renew the \maketitle macro so that it creates the title pages we want:
 \renewcommand{\maketitle}{
+
+	% Determine if there are one author or two to set the 'second' boolean toggle
+	\ifx\@authorTwo\empty                % if \@authorTwo is empty we declare the toggle 'second' to be false
+		\togglefalse{second}
+	\else
+		\toggletrue{second}
+	\fi
+
     % First title page
     \thispagestyle{empty}
     \begin{center}
