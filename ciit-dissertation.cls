@@ -310,7 +310,7 @@
     \vspace{\baselineskip}
     \begin{center}{\Large Certificate}\end{center}
     \vspace{\baselineskip}
-    {It is certified that \@author { (\@registrationnumber)} has carried out all the work related to this \@dissertationtype { under} my supervision at the Department of \@department, COMSATS Institute of Information Technology, \@campus { and} the work fulfills the requirements for award of \@program { degree}.\par}
+    {It is certified that \@author { (\@registrationnumber)} \iftoggle{second}{and \@authorTwo { (\@registrationnumberTwo)}}{} \iftoggle{second}{have}{has} carried out all the work related to this \@dissertationtype { under} my supervision at the Department of \@department, COMSATS Institute of Information Technology, \@campus { and} the work fulfills the requirements for award of \@program { degree}.\par}
     \vspace{\baselineskip}
     {\@submissiondate\par}
     \vspace{1.5\baselineskip}
