@@ -227,11 +227,15 @@
         {\large \@title}\\
         \vspace{0.5\baselineskip}
         {\large submitted for the degree of \@program}\\
-        % \vspace{0.5\baselineskip}
         {\large by}\\
         \vspace{0.5\baselineskip}
         {\large \@author}\\
         {\large \@registrationnumber}\\
+        \iftoggle{second}{
+			{\large \&}\\
+			{\large \@authorTwo}\\
+			{\large \@registrationnumberTwo}\\
+        }{}
         \vspace{0.5\baselineskip}
         {\large has been approved}\\
         {\large for COMSATS Institute of Information Technology, \@campus}\\
@@ -277,8 +281,13 @@
         {\Large Declaration}
     \end{center}
     \vspace{\baselineskip}
-    % ToDo: Choose between singular I and plural We based on number of authors
-    {I}, hereby declare that this project neither as a whole not as a part there of has been copied out from any source. It is further declared that {I} have developed this \@dissertationtype { and} the accompanied report entirely on the basis of {my} personal efforts made under the sincere guidance of {my} {supervisor}. No portion of the work presented in this report has been submitted for any other degree of qualification of this or any other University or Institute of learning, if found {I} shall stand responsible.
+    \iftoggle{second}%
+    {
+		{We}, hereby declare that this project neither as a whole not as a part there of has been copied out from any source. It is further declared that {we} have developed this \@dissertationtype { and} the accompanied report entirely on the basis of {our} personal efforts made under the sincere guidance of {our} {supervisor}. No portion of the work presented in this report has been submitted for any other degree of qualification of this or any other University or Institute of learning, if found {we} shall stand responsible.
+    }%
+    {
+		{I}, hereby declare that this project neither as a whole not as a part there of has been copied out from any source. It is further declared that {I} have developed this \@dissertationtype { and} the accompanied report entirely on the basis of {my} personal efforts made under the sincere guidance of {my} {supervisor}. No portion of the work presented in this report has been submitted for any other degree of qualification of this or any other University or Institute of learning, if found {I} shall stand responsible.
+	}
     \vspace{0.5\baselineskip}
     \begin{flushleft}
         \@submissiondate\\
@@ -286,7 +295,12 @@
     \begin{flushright}
         \vspace{2\baselineskip}
         \@author\\
-        \@registrationnumber
+        \@registrationnumber\\
+        \iftoggle{second}{
+			\vspace{2\baselineskip}
+			\@authorTwo\\
+			\@registrationnumberTwo\\
+        }{}
     \end{flushright}
 
 
