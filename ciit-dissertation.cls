@@ -164,13 +164,13 @@
         \vspace{\baselineskip}
         % ToDo: Choose the correct article based on the degree type by writing an 'if' based macro
         {\large An \@degreetype { }\@dissertationtype { submitted}\\ to the Department of}\\
-        \vspace{\baselineskip}
+        \vspace{0.7\baselineskip}
         {\large \@department}\\
-        \vspace{\baselineskip}
+        \vspace{0.7\baselineskip}
         {\large as partial fulfillment for the award of Degree}\\
-        \vspace{\baselineskip}
+        \vspace{0.7\baselineskip}
         {\large \@program}
-        \vspace{\baselineskip}
+        \vspace{0.7\baselineskip}
         \begin{table}[h]
             \def\arraystretch{2.5}
             \centering
@@ -181,6 +181,10 @@
                 \hline
                 \@author & \@registrationnumber\tabularnewline
                 \hline
+                \iftoggle{second}{
+                	\@authorTwo & \@registrationnumberTwo\tabularnewline
+                	\hline
+                }{}
             \end{tabularx}
         \end{table}
     \end{center}
@@ -198,11 +202,16 @@
         \end{itemize}
     \endgroup
 
-    \vspace{1.5\baselineskip}
     \begin{flushright}
         \rule{0.25\textwidth}{1pt}\\
         \@author\\
-        \@registrationnumber
+        \@registrationnumber\\
+        \iftoggle{second}{
+        	\vspace{1.5\baselineskip}
+			\rule{0.25\textwidth}{1pt}\\
+			\@authorTwo\\
+			\@registrationnumberTwo\\
+        }{}
     \end{flushright}
 
     % Fourth title page: Final Approval
